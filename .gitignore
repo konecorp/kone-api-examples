@@ -1,0 +1,44 @@
+!craco.config.js
+!.eslintrc.js
+.eslintcache
+!.prettierrc.js
+!jest.config.js
+*.d.ts
+!react-app-env.d.ts
+node_modules
+*.hash
+*.digest
+
+logs
+apikeys
+
+# Java build directories
+target
+test-results
+*.iml
+.idea
+.classpath
+.project
+.settings
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Parcel build directories
+.cache
+.build
+
+.python-version
+
+*.tsbuildinfo
+
+# Robot Framework items
+tests/**/log.html
+tests/**/output.xml
+tests/**/report.html
+tests/**/*.png
+tests/**/__pycache__
+
+**/.DS_Store
+**/.env
