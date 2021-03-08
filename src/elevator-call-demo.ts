@@ -56,7 +56,7 @@ const fetchAccessToken = async (scope?: string): Promise<string> => {
     },
     data: querystring.stringify({
       grant_type: 'client_credentials',
-      scope: scope ?? ''
+      scope: scope ?? '',
     }),
   }
 
@@ -203,7 +203,11 @@ const start = async () => {
   const buildings = await fetchResources(accessToken)
 
   // Now fetch a new master token that can access all of the resources. This is different for Elevator Call API or Service Robot API.
-  const scope = buildings.filter(id => id.startsWith('building:')).map(id => `callgiving/${id}`).join(' ') + ' application/inventory'
+  const scope =
+    buildings
+      .filter((id) => id.startsWith('building:'))
+      .map((id) => `callgiving/${id}`)
+      .join(' ') + ' application/inventory'
 
   // Fetch a new access token with a new scope that will enable the access to Elevator Call API or Service Robot API
   accessToken = await fetchAccessToken(scope)
