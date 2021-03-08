@@ -12,7 +12,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 
 To use our APIs, you need an account on [KONE API Portal](https://dev.kone.com/). Once you have registered for an account, create a Sandbox application.
 
-Since the project is a Typescript project, setting it up requires just a little effort. You can find all the necessary code in the [elevator-call-demo.ts](https://github.com/konecorp/kone-api-demo/blob/main/elevator-call-demo.ts). Once the file is run, the following is done:
+Since the project is a Typescript project, setting it up requires just a little effort. You can find all the necessary code in the [elevator-call-demo.ts](https://github.com/konecorp/kone-api-demo/blob/main/src/elevator-call-demo.ts). Once the file is run, the following is done:
 
 1. Checking that the necessary variables have been defined: `CLIENT_ID` and `CLIENT_SECRET`.
 2. Fetching an access token from Authentication API without any scope defined. The returned accessToken will include only `inventory/application` grant.
@@ -41,7 +41,7 @@ Follow the instructions to start using this project
 
 `npm ci`
 
-3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `elevator-call-demo.ts`
+3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `src/elevator-call-demo.ts`
 4. Set the following variables:
    - **CLIENT_ID**, the clientId generated when creating the application in KONE API Portal
    - **CLIENT_SECRET**, the client secret received when creating the application
@@ -57,7 +57,7 @@ Follow the instructions to start using this project
 To run this project using a debugger, complete the steps in the instructions above without running step 5. Then continue following this example, which uses Visual Studio Code debugger:
 
 1. Click on the debugger icon on the left side.
-2. If you want, set breakpoints within the `elevator-call-demo.ts` file.
+2. If you want, set breakpoints within the `src/elevator-call-demo.ts` file.
 3. Run in debugger mode by pressing on the running icon in the debugger tab.
 
 ![Full debugger flow](./img/full-debugger-flow.jpg?raw=true 'debugger')

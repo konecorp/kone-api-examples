@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Elevator Call API demo application",
   "homepage": "https://dev.kone.com",
-  "main": "elevator-call-demo.ts",
+  "main": "src/elevator-call-demo.ts",
   "scripts": {
-    "start": "ts-node elevator-call-demo.ts"
+    "start": "ts-node src/elevator-call-demo.ts",
+    "build": "npm run clean && tsc -b .",
+    "clean": "rimraf dist"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -19,6 +21,7 @@
     "@types/node": "14.14.31",
     "@types/uuid": "8.3.0",
     "@types/ws": "7.4.0",
+    "rimraf": "3.0.2",
     "ts-node": "9.1.1",
     "typescript": "4.2.2"
   }

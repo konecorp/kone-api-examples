@@ -8,6 +8,7 @@
 node_modules
 *.hash
 *.digest
+dist
 
 logs
 apikeys
