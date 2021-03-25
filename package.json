@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "Elevator Call API demo application",
   "homepage": "https://dev.kone.com",
-  "main": "src/elevator-call-demo.ts",
+  "main": "src/examples/elevator-call-demo.ts",
   "scripts": {
-    "start": "ts-node src/elevator-call-demo.ts",
+    "start": "ts-node src/examples/elevator-call-demo.ts",
+    "start:elevator-call-demo": "ts-node src/examples/elevator-call-demo.ts",
+    "start:websocket-sessions": "ts-node src/examples/websocket-sessions.ts",
     "build": "npm run clean && tsc -b .",
     "clean": "rimraf dist"
   },
   "license": "Apache-2.0",
   "dependencies": {
     "axios": "0.21.1",
+    "dotenv": "^8.2.0",
     "lodash": "4.17.21",
     "uuid": "8.3.2",
     "ws": "7.4.3"

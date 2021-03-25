@@ -41,7 +41,7 @@ Follow the instructions to start using this project
 
 `npm ci`
 
-3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `src/elevator-call-demo.ts`
+3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `src/examples/elevator-call-demo.ts`
 4. Set the following variables:
    - **CLIENT_ID**, the clientId generated when creating the application in KONE API Portal
    - **CLIENT_SECRET**, the client secret received when creating the application
@@ -57,7 +57,17 @@ Follow the instructions to start using this project
 To run this project using a debugger, complete the steps in the instructions above without running step 5. Then continue following this example, which uses Visual Studio Code debugger:
 
 1. Click on the debugger icon on the left side.
-2. If you want, set breakpoints within the `src/elevator-call-demo.ts` file.
+2. If you want, set breakpoints within the `src/example/elevator-call-demo.ts` file.
 3. Run in debugger mode by pressing on the running icon in the debugger tab.
 
 ![Full debugger flow](./img/full-debugger-flow.jpg?raw=true 'debugger')
+
+## Running other examples
+
+Other examples can be found in `src/examples` folder. To run any of them, the **CLIENT_ID** and **CLIENT_SECRET** variables need to be defined. Since the same variables are used in each example, you can set them up locally as environmental variables or write a .env file to the root directory. For more information on .env files, please see https://www.npmjs.com/package/dotenv.
+
+Any of the examples can be started with the following syntax:
+
+`npm run start:{example filename}`
+
+Additionally, there will be a debugger configuration available for debugging each example on Visual Studio Code.
