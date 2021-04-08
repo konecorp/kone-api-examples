@@ -13,10 +13,21 @@
       "protocol": "inspector"
     },
     {
-      "name": "Start websocket sessions demo",
+      "name": "Start websocket sessions demo - advanced",
       "type": "node",
       "request": "launch",
       "args": ["src/examples/websocket-sessions.ts"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal",
+      "protocol": "inspector"
+    },
+    {
+      "name": "Start websocket sessions demo - basic",
+      "type": "node",
+      "request": "launch",
+      "args": ["src/examples/websocket-sessions-basic.ts"],
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
