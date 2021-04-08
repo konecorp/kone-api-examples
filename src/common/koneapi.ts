@@ -400,6 +400,19 @@ export async function connectWithSession(
 }
 
 /**
+ * Checks if the needed credential have been defined
+ */
+export const validateClientIdAndClientSecret = (CLIENT_ID: string, CLIENT_SECRET: string) => {
+  if (
+    _.isEmpty(CLIENT_ID) ||
+    _.isEmpty(CLIENT_SECRET) ||
+    CLIENT_ID === 'YOUR_CLIENT_ID' ||
+    CLIENT_SECRET === 'YOUR_CLIENT_SECRET'
+  )
+    throw Error('CLIENT_ID and CLIENT_SECRET needs to be defined')
+}
+
+/**
  * Helper function for serializing subsequent WebSocket messages without blocking concurrent events
  * @param webSocketConnection
  * @param requestId
