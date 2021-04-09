@@ -48,7 +48,7 @@ function onWebSocketEvent(data: WebSocketBase): void {
   if (data.type === 'lift-call-state') {
     const callState = <WebSocketCallState>data
     if (callState.callStatus === 'served' || callState.callStatus === 'cancelled') {
-      // Client application must be prepared for duplicate messages sent during reconnections when using sessions
+      // Client application must be prepared for duplicate messages sent during reconnection when using sessions
       if (!servedLiftCalls.includes(callState.requestId)) {
         servedLiftCalls.push(callState.requestId)
         console.log(`Lift call ${callState.requestId} finished with state ${callState.callStatus}`)
@@ -58,7 +58,7 @@ function onWebSocketEvent(data: WebSocketBase): void {
 }
 
 /**
- * Asyncronous function for creating and sending destination lift call and waiting for response
+ * Asynchronous function for creating and sending destination lift call and waiting for response
  * @param session WebSocketSession object
  * @param targetBuildingId Target building identifier
  * @param sourceId Source area identifier
@@ -147,7 +147,7 @@ const start = async () => {
     })
     console.log(`Connection with a session ID ${session.sessionId} successfully established`)
 
-    // WebSocketSession conviniently resends WebSocket messages in parsed JSON format, excluding direct responses to requests
+    // WebSocketSession conveniently resends WebSocket messages in parsed JSON format, excluding direct responses to requests
     session.on('session-event', onWebSocketEvent)
     // WebSocketSession emits 'session-resumed' to let the client know that lift calls made after disconnection are automatically stored within the session
     session.on('session-resumed', () => {
@@ -191,7 +191,7 @@ const start = async () => {
     }
     let closeConnectionTimer = closeConnectionRandomly()
   } catch (error) {
-    // In case intial connection throws an error, it is likely an unrecoverable error with invalid parameters
+    // In case initial connection throws an error, it is likely an unrecoverable error with invalid parameters
     console.log('Could not establish initial connection or session', error)
   }
 }
