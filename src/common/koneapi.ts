@@ -400,7 +400,7 @@ export async function connectWithSession(
 }
 
 /**
- * Checks if the needed credential have been defined
+ * Checks if the CLIENT_ID and CLIENT_SECRET has been defined
  */
 export const validateClientIdAndClientSecret = (CLIENT_ID: string, CLIENT_SECRET: string) => {
   if (
