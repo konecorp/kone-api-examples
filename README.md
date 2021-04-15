@@ -8,6 +8,14 @@ The example codes on this document will introduce the main concepts of KONE APIs
 - With **Building API** you can retrieve information about your building, and
 - With **Elevator Call WebSocket API** you can execute elevator calls and receive real-time data about the call and the assigned elevators.
 
+### Examples
+
+| Example name                  |                                                            Source file                                                            | Description                                                                                                                                                                                                                                                                         |
+| ----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Elevator Call                 |          [elevator-call-demo.ts](https://github.com/konecorp/kone-api-demo/blob/main/src/examples/elevator-call-demo.ts)          | Simple elevator call demo about acquiring needed access token, fetching building topology and making the elevator call within the WebSocket connection. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api) |
+| WebSocket sessions - Basic    |    [websocket-sessions-basic.ts](https://github.com/konecorp/kone-api-demo/blob/main/src/examples/websocket-sessions-basic.ts)    | Introduction to the WebSocket sessions within the Elevator WebSocket API.                                                                                                                                                                                                           |
+| WebSocket sessions - Advanced | [websocket-sessions-advanced.ts](https://github.com/konecorp/kone-api-demo/blob/main/src/examples/websocket-sessions-advanced.ts) | Advanced demo about the WebSocket session handling. Includes proper error handling and interaction with the API in cases like timeouts.                                                                                                                                             |
+
 ## How the project works
 
 To use our APIs, you need an account on [KONE API Portal](https://dev.kone.com/). Once you have registered for an account, create a Sandbox application.
@@ -41,7 +49,7 @@ Follow the instructions to start using this project
 
 `npm ci`
 
-3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `src/elevator-call-demo.ts`
+3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `src/examples/elevator-call-demo.ts`
 4. Set the following variables:
    - **CLIENT_ID**, the clientId generated when creating the application in KONE API Portal
    - **CLIENT_SECRET**, the client secret received when creating the application
@@ -57,7 +65,17 @@ Follow the instructions to start using this project
 To run this project using a debugger, complete the steps in the instructions above without running step 5. Then continue following this example, which uses Visual Studio Code debugger:
 
 1. Click on the debugger icon on the left side.
-2. If you want, set breakpoints within the `src/elevator-call-demo.ts` file.
+2. If you want, set breakpoints within the `src/examples/elevator-call-demo.ts` file.
 3. Run in debugger mode by pressing on the running icon in the debugger tab.
 
 ![Full debugger flow](./img/full-debugger-flow.jpg?raw=true 'debugger')
+
+## Running other examples
+
+Other examples can be found in `src/examples` folder. To run any of them, the **CLIENT_ID** and **CLIENT_SECRET** variables need to be defined. Since the same variables are used in each example, you can set them up locally as environmental variables or write a .env file to the root directory. For more information on .env files, please see https://www.npmjs.com/package/dotenv.
+
+Any of the examples can be started with the following syntax:
+
+`npm run start:{example filename}`
+
+Additionally, there will be a debugger configuration available for debugging each example on Visual Studio Code.
