@@ -42,20 +42,14 @@ const onWebSocketMessage = (data: string): void => {
 const start = async () => {
   checkRequiredVariables()
 
-  // Fetch the first token which will by default contain application/inventory scope for our use in the next request
-  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET)
+  // Fetch the access token with both application/inventory scope and access to execute elevator calls on any building
+  // accessible to the application - note that if you have many (100+) resources, you cannot use wildcards
+  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, ['application/inventory', 'callgiving/*'])
   console.log('AccessToken successfully fetched')
 
   // Fetch the building ids to which the user has access to, and make sure that we get at least one building
   const buildings = await fetchResources(accessToken, 'building')
   console.log('List of accessible buildings:', buildings)
-
-  // Now fetch a new master token that can access all of the resources. This is different for Elevator Call API or Service Robot API.
-  const scopes = buildings.map((id) => `callgiving/${id}`)
-
-  // Fetch a new access token with a new scope that will enable the access to Elevator Call API or Service Robot API
-  accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
-  console.log('AccessToken successfully fetched')
 
   // Select the first available building
   const targetBuildingId = buildings[0]
