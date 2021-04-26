@@ -11,15 +11,12 @@ import {
   WebSocketCreateSessionResponse,
   StatusCode,
   AccessToken,
-  ServiceOrder,
-  EquipmentStatus,
-  EquipmentInfo,
 } from './types'
 
 /**
  * Variables that contain the main endpoints used in this demo project.
  */
-const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.koneapi.com'
+const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
 const API_AUTH_TOKEN_ENDPOINT = process.env.API_AUTH_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v1/oauth2/token`
 const API_AUTH_LIMITED_TOKEN_ENDPOINT =
   process.env.API_AUTH_LIMITED_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v1/oauth2/limited-token`
@@ -28,7 +25,6 @@ const API_RESOURCES_ENDPOINT =
 const API_TOPOLOGY_ENDPOINT = process.env.API_TOPOLOGY_ENDPOINT || `https://${API_HOSTNAME}/api/v1/buildings`
 const WEBSOCKET_ENDPOINT = process.env.WEBSOCKET_ENDPOINT || `wss://${API_HOSTNAME}/stream-v1`
 const WEBSOCKET_SUBPROTOCOL = process.env.WEBSOCKET_SUBPROTOCOL || 'koneapi'
-const API_EQUIPMENT_ENDPOINT = `https://${API_HOSTNAME}/api/v1/equipment`
 
 /**
  * Fetch the token using the client-credentials flow. In this case, we assume that the user wants to fetch a token
@@ -450,80 +446,4 @@ export async function waitForResponse(
     // Push onMessage handler to the top of listener list to receive event as early as possible
     webSocketConnection.prependListener('message', onMessage)
   })
-}
-
-/**
- * Function to fetch basic information of an equipment
- * @param accessToken valid access token
- * @param equipmentIdWithPrefix equipment identifier with ken prefix
- */
-export async function fetchEquipmentBasicInformation(accessToken: AccessToken, equipmentIdWithPrefix: string): Promise<EquipmentInfo> {
-  const requestConfig: AxiosRequestConfig = {
-    method: 'GET',
-    url: `${API_EQUIPMENT_ENDPOINT}/${equipmentIdWithPrefix}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-  }
-
-  // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
-}
-
-/**
- * Function to fetch status of an equipment
- * @param accessToken valid access token
- * @param equipmentIdWithPrefix equipment identifier with ken prefix
- */
-export async function fetchEquipmentStatus(accessToken: AccessToken, equipmentIdWithPrefix: string): Promise<EquipmentStatus> {
-  const requestConfig: AxiosRequestConfig = {
-    method: 'GET',
-    url: `${API_EQUIPMENT_ENDPOINT}/${equipmentIdWithPrefix}/status`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-  }
-
-  // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
-}
-
-/**
- * 
- * @param accessToken valid access token
- * @param equipmentIdWithPrefix equipment identifier with ken prefix
- * @returns 
- */
-export async function fetchServiceOrdersList(accessToken: AccessToken, equipmentIdWithPrefix: string): Promise<ServiceOrder[]> {
-  const requestConfig: AxiosRequestConfig = {
-    method: 'GET',
-    url: `${API_EQUIPMENT_ENDPOINT}/${equipmentIdWithPrefix}/serviceOrders`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-  }
-
-  // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
-}
-
-export async function fetchSingleServiceOrder(accessToken: AccessToken, equipmentIdWithPrefix: string, serviceOrderId: string): Promise<ServiceOrder> {
-  const requestConfig: AxiosRequestConfig = {
-    method: 'GET',
-    url: `${API_EQUIPMENT_ENDPOINT}/${equipmentIdWithPrefix}/serviceOrders/${serviceOrderId}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-  }
-
-  // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
 }

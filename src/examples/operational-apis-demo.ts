@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import { fetchAccessToken, fetchEquipmentBasicInformation, fetchEquipmentStatus, fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/koneapi'
+import { fetchAccessToken } from '../common/koneapi'
+import { fetchEquipmentBasicInformation, fetchEquipmentStatus, fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/operationalapi'
 
 /**
  * Update these three variables with your own credentials and equipment identifier or set them up as environment variables.
@@ -23,31 +24,56 @@ const checkRequiredVariables = () => {
 }
 
 const start = async () => {
-  checkRequiredVariables()
+  try {
+    checkRequiredVariables()
+  } catch (error) {
+    console.error(error.message)
+    return
+  }
 
   let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, ['equipmentstatus/*', 'serviceinfo/*'])
   console.log('AccessToken successfully fetched')
 
   // Fetch basic information of equipment
-  console.log(`Fetch basic information of equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
-  const equipmentInfo = await fetchEquipmentBasicInformation(accessToken, EQUIPMENT_ID_WITH_PREFIX)
-  console.log(equipmentInfo)
+  try {
+    console.log(`Fetch basic information of the equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
+    const equipmentInfo = await fetchEquipmentBasicInformation(accessToken, EQUIPMENT_ID_WITH_PREFIX)
+    console.log(equipmentInfo)
+  } catch (error) {
+    console.error('Failed to fetch information of the equipment')
+  }
 
   // Fetch maintenance status of equipment
-  console.log(`Fetch maintenance status of equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
-  const equipmentStatus = await fetchEquipmentStatus(accessToken, EQUIPMENT_ID_WITH_PREFIX)
-  console.log(equipmentStatus)
-
+  try {
+    console.log(`Fetch maintenance status of the equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
+    const equipmentStatus = await fetchEquipmentStatus(accessToken, EQUIPMENT_ID_WITH_PREFIX)
+    console.log(equipmentStatus)
+  } catch (error) {
+    console.error('Failed to fetch maintenance status')
+  }
+  
   // Fetch list of all service orders
-  console.log(`Fetch list of service orders for equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
-  const serviceOrdersList = await fetchServiceOrdersList(accessToken, EQUIPMENT_ID_WITH_PREFIX)
-  console.log(serviceOrdersList)
+  let serviceOrdersList
+  try {
+    console.log(`Fetch list of service orders for the equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
+    serviceOrdersList = await fetchServiceOrdersList(accessToken, EQUIPMENT_ID_WITH_PREFIX)
+    console.log(serviceOrdersList)
+  } catch (error) {
+    console.error('Failed to fetch list of service orders')
+  }
 
   // Fetch detail of a service order
-  const serviceOrderId = serviceOrdersList[0].serviceOrderId
-  console.log(`Fetch details of service order id ${serviceOrderId} for equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
-  const singleServiceOrder = await fetchSingleServiceOrder(accessToken, EQUIPMENT_ID_WITH_PREFIX, serviceOrderId)
-  console.log(singleServiceOrder)
+  try {
+    if (!serviceOrdersList) {
+      return
+    }
+    const { serviceOrderId } = serviceOrdersList[0]
+    console.log(`Fetch details of service order id ${serviceOrderId} for equipment ${EQUIPMENT_ID_WITH_PREFIX}`)
+    const singleServiceOrder = await fetchSingleServiceOrder(accessToken, EQUIPMENT_ID_WITH_PREFIX, serviceOrderId)
+    console.log(singleServiceOrder)
+  } catch (error) {
+    console.error('Failed to fetch details of the service order')
+  }
 }
 
 start()
