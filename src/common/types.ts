@@ -333,3 +333,38 @@ export class WebSocketSession extends EventEmitter {
    */
   sessionId?: string
 }
+
+/**
+ * Basic information of equipment
+ */
+export interface EquipmentInfo {
+  description: string
+  type: string
+  serialNumber: string
+  addressCity: string
+  addressName: string
+  addressStreet: string
+  addressPostCode: string
+  addressCountry: string
+  equipmentId: string
+}
+
+/**
+ * Maintenance status of equipment
+ */
+export interface EquipmentStatus {
+  entrapment: boolean
+  status: string
+  maintenance: {
+    status: string
+    technicianComment: string
+  }
+}
+
+/**
+ * Service order of equipment
+ */
+export interface ServiceOrder {
+  activityType: string
+  serviceOrderId: string
+}
