@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 import { fetchAccessToken, fetchResources } from '../common/koneapi'
 import { fetchEquipmentBasicInformation, fetchEquipmentStatus, fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/operational-api-supporting-functions'
 
@@ -13,8 +13,8 @@ const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' 
  */
 const checkRequiredVariables = () => {
   if (
-    _.isEmpty(CLIENT_ID) ||
-    _.isEmpty(CLIENT_SECRET) ||
+    isEmpty(CLIENT_ID) ||
+    isEmpty(CLIENT_SECRET) ||
     CLIENT_ID === 'YOUR_CLIENT_ID' ||
     CLIENT_SECRET === 'YOUR_CLIENT_SECRET'
   )
