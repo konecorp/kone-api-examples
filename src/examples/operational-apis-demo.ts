@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { fetchAccessToken, fetchResources } from '../common/koneapi'
-import { fetchEquipmentBasicInformation, fetchEquipmentStatus, fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/operationalapi'
+import { fetchEquipmentBasicInformation, fetchEquipmentStatus, fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/operational-api-supporting-functions'
 
 /**
  * Update these two variables with your own credentials and equipment identifier or set them up as environment variables.
@@ -25,68 +25,50 @@ const checkRequiredVariables = () => {
  * Demo equipment status api by fetching basic information of the equipment and its maintenance status
  */
 const demoEquipmentStatusApi = async (accessToken: string, targetEquipmentId: string) => {
+  // Acquire access token with needed scope to fetch equipment information
   const scopes = [`equipmentstatus/${targetEquipmentId}`]
   accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
 
   // Fetch basic information of equipment
-  try {
-    console.log(`Fetch basic information of the equipment ${targetEquipmentId}`)
-    const equipmentInfo = await fetchEquipmentBasicInformation(accessToken, targetEquipmentId)
-    console.log(equipmentInfo)
-  } catch (error) {
-    console.error('Failed to fetch information of the equipment')
-  }
+  console.log(`Fetch basic information of the equipment ${targetEquipmentId}`)
+  const equipmentInfo = await fetchEquipmentBasicInformation(accessToken, targetEquipmentId)
+  console.log(equipmentInfo)
 
   // Fetch maintenance status of equipment
-  try {
-    console.log(`Fetch maintenance status of the equipment ${targetEquipmentId}`)
-    const equipmentStatus = await fetchEquipmentStatus(accessToken, targetEquipmentId)
-    console.log(equipmentStatus)
-  } catch (error) {
-    console.error('Failed to fetch maintenance status')
-  }
+  console.log(`Fetch maintenance status of the equipment ${targetEquipmentId}`)
+  const equipmentStatus = await fetchEquipmentStatus(accessToken, targetEquipmentId)
+  console.log(equipmentStatus)
 }
 
 /**
  * Demo service info api by fetching list of service orders and detail of a order for the equipment
  */
 const demoServiceInfoApi = async (accessToken: string, targetEquipmentId: string) => {
+    // Acquire access token with needed scope to fetch service order information
   const scopes = [`serviceinfo/${targetEquipmentId}`]
   accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
  
   // Fetch list of all service orders
   let serviceOrdersList
-  try {
-    console.log(`Fetch list of service orders for the equipment ${targetEquipmentId}`)
-    serviceOrdersList = await fetchServiceOrdersList(accessToken, targetEquipmentId)
-    console.log(serviceOrdersList)
-  } catch (error) {
-    console.error('Failed to fetch list of service orders')
-  }
+  console.log(`Fetch list of service orders for the equipment ${targetEquipmentId}`)
+  serviceOrdersList = await fetchServiceOrdersList(accessToken, targetEquipmentId)
+  console.log(serviceOrdersList)
 
-  // Fetch detail of a service order
-  try {
-    if (!serviceOrdersList) {
-      return
-    }
-    const { serviceOrderId } = serviceOrdersList[0]
-    console.log(`Fetch details of service order id ${serviceOrderId} for equipment ${targetEquipmentId}`)
-    const singleServiceOrder = await fetchSingleServiceOrder(accessToken, targetEquipmentId, serviceOrderId)
-    console.log(singleServiceOrder)
-  } catch (error) {
-    console.error('Failed to fetch details of the service order')
+  // Fetch detail of the first service order from the list
+  if (!serviceOrdersList) {
+    console.log('There is nothing in the service orders list, stop fetching details of a service order')
+    return
   }
+  const { serviceOrderId } = serviceOrdersList[0]
+  console.log(`Fetch details of service order id ${serviceOrderId} for equipment ${targetEquipmentId}`)
+  const singleServiceOrder = await fetchSingleServiceOrder(accessToken, targetEquipmentId, serviceOrderId)
+  console.log(singleServiceOrder)
 }
 
 const start = async () => {
-  try {
-    checkRequiredVariables()
-  } catch (error) {
-    console.error(error.message)
-    return
-  }
+  checkRequiredVariables()
 
   // Fetch the first token which will by default contain application/inventory scope for our use in the next request
   let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET)

@@ -20,8 +20,12 @@ const API_EQUIPMENT_ENDPOINT = `https://${API_HOSTNAME}/api/v1/equipment`
   }
 
   // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
+  try {
+    const result = await axios(requestConfig)
+    return result.data
+  } catch (error) {
+    console.error('Failed to fetch information of the equipment:', error?.message)
+  }
 }
 
 /**
@@ -40,8 +44,12 @@ export async function fetchEquipmentStatus(accessToken: AccessToken, equipmentId
   }
 
   // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
+  try {
+    const result = await axios(requestConfig)
+    return result.data
+  } catch (error) {
+    console.error('Failed to fetch maintenance status:', error?.message)
+  }
 }
 
 /**
@@ -60,8 +68,13 @@ export async function fetchServiceOrdersList(accessToken: AccessToken, equipment
   }
 
   // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
+  try {
+    const result = await axios(requestConfig)
+    return result.data
+  } catch (error) {
+    console.error('Failed to fetch list of service orders:', error?.message)
+  }
+  
 }
 
 /**
@@ -81,6 +94,10 @@ export async function fetchSingleServiceOrder(accessToken: AccessToken, equipmen
   }
 
   // Execute the request
-  const result = await axios(requestConfig)
-  return result.data
+  try {
+    const result = await axios(requestConfig)
+    return result.data
+  } catch (error) {
+    console.error('Failed to fetch details of the service order:', error?.message)
+  }
 }
