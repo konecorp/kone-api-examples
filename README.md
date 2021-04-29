@@ -1,4 +1,4 @@
-# Elevator Call API example code project
+# KONE APIs example code project
 
 ## Introduction
 
@@ -6,7 +6,8 @@ The example codes on this document will introduce the main concepts of KONE APIs
 
 - With **Authentication API** you can receive the access token that enables you to make an API call
 - With **Building API** you can retrieve information about your building, and
-- With **Elevator Call WebSocket API** you can execute elevator calls and receive real-time data about the call and the assigned elevators.
+- With **Elevator Call WebSocket API** you can execute elevator calls and receive real-time data about the call and the assigned elevators, and
+- With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details.
 
 ### Examples
 
