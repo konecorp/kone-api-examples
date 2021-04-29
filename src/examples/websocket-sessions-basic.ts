@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
+import { ResumeSessionPayload, CreateSessionPayload } from '../common/types'
 
 import { validateClientIdAndClientSecret, fetchAccessToken, openWebSocketConnection } from '../common/koneapi'
 
@@ -49,7 +50,7 @@ const openConnectionCreateSessionAndResolveSessionId = async (accessToken: strin
 
     firstWebSocketConnection.on('message', (data: any) => onWebSocketMessage(data, sessionIdFn))
 
-    const createSessionPayload = {
+    const createSessionPayload: CreateSessionPayload = {
       type: 'create-session',
       requestId: uuidv4(),
     }
@@ -89,7 +90,7 @@ const start = async () => {
   // attach message handler
   secondWebSocketConnection.on('message', (data: any) => onWebSocketMessage(data))
 
-  const resumeSessionPayload = {
+  const resumeSessionPayload: ResumeSessionPayload = {
     type: 'resume-session',
     requestId: uuidv4(),
     sessionId,

@@ -11,6 +11,9 @@ import {
   WebSocketCreateSessionResponse,
   StatusCode,
   AccessToken,
+  CreateSessionPayload,
+  ResumeSessionPayload,
+  WebSocketResumeSessionResponse,
 } from './types'
 
 /**
@@ -210,7 +213,7 @@ export async function openWebSocketConnection(accessToken: AccessToken): Promise
  */
 export async function createSession(connection: WebSocket): Promise<string> {
   // Build payload for creating session
-  const createSessionPayload = {
+  const createSessionPayload: CreateSessionPayload = {
     type: 'create-session',
     requestId: uuidv4(),
   }
@@ -228,16 +231,16 @@ export async function createSession(connection: WebSocket): Promise<string> {
  * @param connection Open WebSocket connection
  * @param sessionId Session ID to resume
  */
-export async function resumeSession(connection: WebSocket, sessionId: string): Promise<void> {
+export async function resumeSession(connection: WebSocket, sessionId: string): Promise<WebSocketResumeSessionResponse> {
   // Build payload for resuming session
-  const resumeSessionPayload = {
+  const resumeSessionPayload: ResumeSessionPayload = {
     type: 'resume-session',
     requestId: uuidv4(),
     sessionId: sessionId,
     resendLatestStateUpToSeconds: 30,
   }
   connection.send(JSON.stringify(resumeSessionPayload))
-  await waitForResponse(connection, resumeSessionPayload.requestId)
+  return await waitForResponse(connection, resumeSessionPayload.requestId)
 }
 
 /**

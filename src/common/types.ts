@@ -222,6 +222,75 @@ export type Door = {
   sideId: SideId
 }
 
+/**
+ * Types of requests available for the websocket APIs
+ */
+export type RequestType = 'lift-call' | 'create-session' | 'resume-session'
+
+/**
+ * Possible monitor events when making a lift call
+ */
+export type MonitorEvents = Array<'call' | 'deck' | 'door'>
+
+/**
+ * Unique request Identifier
+ */
+export type RequestId = string
+
+/**
+ * Unique session Identifier
+ */
+export type SessionId = string
+
+/**
+ * The time in seconds until the latest state data is re-sent
+ */
+export type ResendLatestStateUpToSeconds = number
+
+/**
+ *  amount of time it takes for the passenger to arrive to an elevator. Accepted range is from 1 to 600 seconds.
+ */
+export type PassengerArrivalTimeSeconds = number
+
+/**
+ *  Response type received by making a lift call, creating a session, resuming a session
+ */
+export type ResponseType = 'ok' | 'error'
+
+/**
+ * Destination call payload
+ */
+export type DestinationCallPayload = {
+  type: RequestType
+  callType: CallType
+  callAction: CallAction
+  requestId?: RequestId
+  buildingId: BuildingId
+  sourceId: AreaId
+  destinationId?: AreaId
+  monitorEvents?: MonitorEvents
+  keepAlive?: boolean
+  passengerArrivalTimeSeconds?: number
+}
+
+/**
+ * Create session payload
+ */
+export type CreateSessionPayload = {
+  type: RequestType
+  requestId?: RequestId
+}
+
+/**
+ * Resume session payload
+ */
+export type ResumeSessionPayload = {
+  type: RequestType
+  requestId?: RequestId
+  sessionId: SessionId
+  resendLatestStateUpToSeconds?: ResendLatestStateUpToSeconds
+}
+
 export type StatusCode = 200 | 201 | 400 | 401 | 403 | 404 | 409 | 429 | 500
 
 /**
@@ -287,7 +356,10 @@ export interface WebSocketCallState extends WebSocketBase {
  * Session response with SessionData
  */
 export interface WebSocketCreateSessionResponse extends WebSocketResponse {
-  type: 'ok'
+  type: ResponseType
+  connectionId: string
+  requestId: RequestId
+  statusCode: StatusCode
   data: SessionData
 }
 
@@ -296,6 +368,16 @@ export interface WebSocketCreateSessionResponse extends WebSocketResponse {
  */
 export interface SessionData {
   sessionId: string
+}
+
+/**
+ * Resume session response
+ */
+export interface WebSocketResumeSessionResponse extends WebSocketResponse {
+  type: ResponseType
+  connectionId: string
+  requestId: RequestId
+  statusCode: StatusCode
 }
 
 /**

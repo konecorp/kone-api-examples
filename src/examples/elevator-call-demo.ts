@@ -3,8 +3,14 @@ dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 
-import { Area } from '../common/types'
-import { fetchAccessToken, fetchBuildingTopology, fetchResources, openWebSocketConnection, validateClientIdAndClientSecret } from '../common/koneapi'
+import { Area, DestinationCallPayload } from '../common/types'
+import {
+  fetchAccessToken,
+  fetchBuildingTopology,
+  fetchResources,
+  openWebSocketConnection,
+  validateClientIdAndClientSecret,
+} from '../common/koneapi'
 
 /**
  * Update these two variables with your own credentials or set them up as environment variables.
@@ -57,17 +63,15 @@ const start = async () => {
   webSocketConnection.on('message', (data: any) => onWebSocketMessage(data))
 
   // Build the call payload using the areas previously generated
-  const destinationCallPayload = {
+  const destinationCallPayload: DestinationCallPayload = {
     type: 'lift-call',
     callType: 'normal', // normal | robot
     callAction: 'destination',
     requestId: uuidv4(),
     buildingId: targetBuildingId,
-
     sourceId: randomSourceArea.areaId,
     destinationId: randomDestinationArea.areaId,
-
-    monitorEvents: ['call'], // It is possible to monitor: 'call', 'door', 'deck'
+    monitorEvents: ['call', 'deck'], // It is possible to monitor: 'call', 'door', 'deck'
     keepAlive: false, // optional, default to false
   }
 
