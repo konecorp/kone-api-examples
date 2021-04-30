@@ -263,7 +263,7 @@ export type ResponseType = 'ok' | 'error'
 export type ConnectionId = string
 
 /**
- *  either close or keep open the connection
+ *  either close or keep connection open
  */
 export type KeepAlive = boolean
 
@@ -292,7 +292,7 @@ export type CreateSessionPayload = {
 }
 
 /**
- * The connection status can either be open or closed
+ * The connection status can be either open or closed
  */
 export type ConnectionStatus = 'open' | 'closed'
 
