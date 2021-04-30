@@ -9,6 +9,7 @@ import {
   WebSocketBase,
   BuildingId,
   AreaId,
+  DestinationCallPayload,
 } from '../common/types'
 import {
   fetchAccessToken,
@@ -58,7 +59,7 @@ async function constructAndSendDestinationCall(
   sourceId: AreaId,
   destinationId: AreaId
 ) {
-  const destinationCallPayload = {
+  const destinationCallPayload: DestinationCallPayload = {
     type: 'lift-call',
     callType: 'normal', // normal | robot
     callAction: 'destination',

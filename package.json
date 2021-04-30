@@ -7,7 +7,8 @@
   "scripts": {
     "start": "ts-node src/examples/elevator-call-demo.ts",
     "start:elevator-call-demo": "ts-node src/examples/elevator-call-demo.ts",
-    "start:websocket-sessions": "ts-node src/examples/websocket-sessions.ts",
+    "start:websocket-sessions-basic": "ts-node src/examples/websocket-sessions-basic.ts",
+    "start:websocket-sessions-advanced": "ts-node src/examples/websocket-sessions-advanced.ts",
     "start:operational-api-demo": "ts-node src/examples/operational-apis-demo.ts",
     "build": "npm run clean && tsc -b .",
     "clean": "rimraf dist"
