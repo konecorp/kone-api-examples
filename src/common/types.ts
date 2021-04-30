@@ -263,6 +263,11 @@ export type ResponseType = 'ok' | 'error'
 export type ConnectionId = string
 
 /**
+ *  either close or keep open the connection
+ */
+export type KeepAlive = boolean
+
+/**
  * Destination call payload
  */
 export type DestinationCallPayload = {
@@ -274,8 +279,8 @@ export type DestinationCallPayload = {
   sourceId: AreaId
   destinationId?: AreaId
   monitorEvents?: MonitorEvents
-  keepAlive?: boolean
-  passengerArrivalTimeSeconds?: number
+  keepAlive?: KeepAlive
+  passengerArrivalTimeSeconds?: PassengerArrivalTimeSeconds
 }
 
 /**
