@@ -314,7 +314,7 @@ export interface WebSocketBase {
 }
 
 /**
- * Each request sent by the client will be responded with a respose of either 'ok' or 'error' type
+ * Each request sent by the client will be responded with a response of either 'ok' or 'error' type
  */
 export interface WebSocketResponse extends WebSocketBase {
   type: ResponseType
