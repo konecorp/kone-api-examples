@@ -60,12 +60,25 @@ export async function fetchAccessToken(
     }),
   }
 
-  const requestResult = await axios(requestConfig)
+  try {
+    const requestResult = await axios(requestConfig)
 
-  // get the accessToken from the response
-  const accessToken = requestResult.data.access_token
+    // get the accessToken from the response
+    const accessToken = requestResult.data.access_token
 
-  return accessToken
+    return accessToken
+  } catch (authError) {
+    let errorMsg = 'Error fetching the access token'
+
+    if (authError.response) {
+      errorMsg += `: ${authError.response.status} ${authError.response.data.message}`
+    }
+
+    console.error(errorMsg)
+    console.error('Check that you have set the CLIENT_ID and CLIENT_SECRET environment variables correctly.')
+
+    throw new Error(errorMsg)
+  }
 }
 
 /**
