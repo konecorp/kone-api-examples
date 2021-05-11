@@ -1,7 +1,7 @@
 {
   "name": "kone-api-demo",
   "version": "1.0.0",
-  "description": "Elevator Call API demo application",
+  "description": "KONE API demo application",
   "homepage": "https://dev.kone.com",
   "main": "src/examples/elevator-call-demo.ts",
   "scripts": {
