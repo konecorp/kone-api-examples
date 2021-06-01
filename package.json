@@ -16,18 +16,18 @@
   "license": "Apache-2.0",
   "dependencies": {
     "axios": "0.21.1",
-    "dotenv": "8.2.0",
+    "dotenv": "10.0.0",
     "lodash": "4.17.21",
     "uuid": "8.3.2",
-    "ws": "7.4.4"
+    "ws": "7.4.6"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.168",
-    "@types/node": "14.14.37",
+    "@types/lodash": "4.14.170",
+    "@types/node": "14.14.41",
     "@types/uuid": "8.3.0",
-    "@types/ws": "7.4.1",
+    "@types/ws": "7.4.4",
     "rimraf": "3.0.2",
-    "ts-node": "9.1.1",
-    "typescript": "4.2.4"
+    "ts-node": "10.0.0",
+    "typescript": "4.3.2"
   }
 }
