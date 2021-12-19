@@ -15,19 +15,19 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "0.24.0",
     "dotenv": "10.0.0",
     "lodash": "4.17.21",
     "uuid": "8.3.2",
-    "ws": "8.0.0"
+    "ws": "8.3.0"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.171",
-    "@types/node": "14.17.4",
-    "@types/uuid": "8.3.1",
-    "@types/ws": "7.4.7",
+    "@types/lodash": "4.14.178",
+    "@types/node": "14.18.1",
+    "@types/uuid": "8.3.3",
+    "@types/ws": "8.2.2",
     "rimraf": "3.0.2",
-    "ts-node": "10.1.0",
-    "typescript": "4.3.5"
+    "ts-node": "10.4.0",
+    "typescript": "4.5.4"
   }
 }
