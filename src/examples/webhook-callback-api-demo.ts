@@ -5,7 +5,7 @@ type SignParams = {
 }
 
 const authPrerix = 'KONE-Signature '
-const SECRET = 'YOUR_CONFIGURED_SECRET_FOR_WEBHOOK'
+const SECRET = 'YOUR_CONFIGURED_SECRET_FOR_WEBHOOK' // The secret that you provided at creating webhook subscription
 
 /**
  * Demo a function to handle event delivered from KONE to your service via webhook
