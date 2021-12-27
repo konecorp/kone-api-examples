@@ -7,7 +7,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 - With **Authentication API** you can receive the access token that enables you to make an API call
 - With **Building API** you can retrieve information about your building, and
 - With **Elevator Call WebSocket API** you can execute elevator calls and receive real-time data about the call and the assigned elevators, and
-- With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details.
+- With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and individual service order's details.
 
 ### Examples
 
@@ -17,6 +17,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 | WebSocket sessions - Basic    | [websocket-sessions-basic.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/websocket-sessions-basic.ts)       | Introduction to the WebSocket sessions within the Elevator WebSocket API.                                                                                                                                                                                                           |
 | WebSocket sessions - Advanced | [websocket-sessions-advanced.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/websocket-sessions-advanced.ts) | Advanced demo about the WebSocket session handling. Includes proper error handling and interaction with the API in cases like timeouts.                                                                                                                                             |
 | Operational APIs              | [operational-apis-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/operational-apis-demo.ts)             | Simple demo about acquiring needed access token, fetching basic information of an equipment and its maintenance status, get list of all service orders, and detailed information of a service order.                                                                                |
+| Webhook callback API              | [webhook-callback-api-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/webhook/webhook-callback-api-demo.ts)             | Simple demo about verifying event delivered by KONE via webhook mechanism by validating the message signature and body.                                                                              |
 
 ## How the project works
 
