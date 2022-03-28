@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { AccessToken } from './types'
+import { AccessToken, Availability, Entrapment, Movement } from './types'
 
 const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
 const API_EQUIPMENT_STATUS_2_ENDPOINT = `https://${API_HOSTNAME}/api/v2/equipment/search`
@@ -23,7 +23,7 @@ async function executeRequest(accessToken: AccessToken, endpoint: string, equipm
   }
 }
 
-export async function fetchEquipmentAvailability(accessToken: AccessToken, equipmentIds: string[]): Promise<any> {
+export async function fetchEquipmentAvailability(accessToken: AccessToken, equipmentIds: string[]): Promise<Availability> {
   return executeRequest(
     accessToken,
     'availability',
@@ -32,20 +32,20 @@ export async function fetchEquipmentAvailability(accessToken: AccessToken, equip
   )
 }
 
-export async function fetchEquipmentEntrapment(accessToken: AccessToken, equipmentIds: string[]): Promise<any> {
+export async function fetchEquipmentEntrapment(accessToken: AccessToken, equipmentIds: string[]): Promise<Entrapment> {
   return executeRequest(
     accessToken,
     'entrapment',
     equipmentIds,
-    'Failed to fetch availability information'
+    'Failed to fetch entrapment information'
   )
 }
 
-export async function fetchEquipmentMovement(accessToken: AccessToken, equipmentIds: string[]): Promise<any> {
+export async function fetchEquipmentMovement(accessToken: AccessToken, equipmentIds: string[]): Promise<Movement> {
   return executeRequest(
     accessToken,
     'movement',
     equipmentIds,
-    'Failed to fetch availability information'
+    'Failed to fetch movement information'
   )
 }
