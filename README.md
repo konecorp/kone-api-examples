@@ -8,6 +8,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 - With **Building API** you can retrieve information about your building, and
 - With **Elevator Call WebSocket API** you can execute elevator calls and receive real-time data about the call and the assigned elevators, and
 - With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details.
+- With **Equipment Status API 2.0** you can retrieve information about your accessible equipment regarding availability, entrapment, and movement.
 
 ### Examples
 
@@ -16,7 +17,8 @@ The example codes on this document will introduce the main concepts of KONE APIs
 | Elevator Call                 | [elevator-call-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts)                   | Simple elevator call demo about acquiring needed access token, fetching building topology and making the elevator call within the WebSocket connection. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api) |
 | WebSocket sessions - Basic    | [websocket-sessions-basic.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/websocket-sessions-basic.ts)       | Introduction to the WebSocket sessions within the Elevator WebSocket API.                                                                                                                                                                                                           |
 | WebSocket sessions - Advanced | [websocket-sessions-advanced.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/websocket-sessions-advanced.ts) | Advanced demo about the WebSocket session handling. Includes proper error handling and interaction with the API in cases like timeouts.                                                                                                                                             |
-| Operational APIs              | [operational-apis-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/operational-apis-demo.ts)             | Simple demo about acquiring needed access token, fetching basic information of an equipment and its maintenance status, get list of all service orders, and detailed information of a service order.                                                                                |
+| Operational APIs              | [operational-apis-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/operational-apis-demo.ts)             | Simple demo about acquiring needed access token, fetching basic information of an equipment and its maintenance status, get list of all service orders, and detailed information of a service order.                                                                                                                                             |
+| Equipment Status API 2.0              | [equipment-status-2-restapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/equipment-status-2-restapi-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about availability, entrapment and movement.                |
 
 ## How the project works
 
