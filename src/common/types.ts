@@ -475,3 +475,76 @@ export interface ServiceOrder {
     costCurrency?: string
   }
 }
+
+/**
+ * Equipment Status API 2.0
+ * Availability information of equipment
+ * Refer to API portal documentation for more details of availability data format
+ */
+export interface Availability {
+  equipmentId: string
+  state: string
+  previousState?: string
+  activeAlertCount?: number
+  activeAlerts?: {
+    serviceNeedCode: string
+    serviceNeedVersion: string
+    activationTime: string
+    alertUUID: string
+  }[]
+  serviceMode?: string
+  devices?: {
+    deviceId: string
+    status: string
+    deviceType: string
+    connectionTime: string
+    disconnectReason?: string
+  }[]
+  lastUpdate?: string
+  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
+}
+
+/**
+ * Equipment Status API 2.0
+ * Entrapment information of equipment
+ * Refer to API portal documentation for more details of entrapment data format
+ */
+export interface Entrapment {
+  equipmentId: string
+  entrapment: boolean
+  maintenance: {
+    status: string | null
+    technicianComment: string | null
+  }
+  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
+  lastUpdate?: string
+}
+
+/**
+ * Equipment Status API 2.0
+ * Movement information of equipment
+ * Refer to API portal documentation for more details of movement data format
+ */
+export interface Movement {
+  equipmentId: string
+  movementEventType: string
+  mode: string
+  decks: {
+    deckIndex: number
+    startFloor: {
+      floorIndex: number
+      marking: string
+    }
+    stopFloor: {
+      floorIndex: number
+      marking: string
+    }
+    loadPercentage: number
+    estimatedPersons: number
+  }[]
+  durationSeconds?: number
+  distanceMeters?: number
+  stopMode?: string
+  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
+  lastUpdate?: string
+}

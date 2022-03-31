@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, Method } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { AccessToken, EquipmentInfo, EquipmentStatus, ServiceOrder } from './types'
 
 const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
