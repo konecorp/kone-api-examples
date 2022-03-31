@@ -8,7 +8,7 @@ import { fetchEquipmentAvailability, fetchEquipmentEntrapment, fetchEquipmentMov
 const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf48ab0-a902-4b52-8c53-1a9aede716e5'
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
 
-const SANDBOX_KEN = 'ken:111111111' // This is KEN used for SANDBOX testing
+const KEN = 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
 
 
 /**
@@ -39,11 +39,11 @@ const start = async () => {
   validateClientIdAndClientSecret(CLIENT_ID, CLIENT_SECRET)
 
   // Fetch access token with needed scope to use the API (e.g rtm/ken:123456789)
-  const scopes = [`rtm/${SANDBOX_KEN}`]
+  const scopes = [`rtm/${KEN}`]
   const accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
 
-  await demoEquipmentStatusApi2RestApi(accessToken, SANDBOX_KEN)
+  await demoEquipmentStatusApi2RestApi(accessToken, KEN)
 }
 
 start()
