@@ -14,7 +14,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 
 | Example name                  | Source file                                                                                                                           | Description                                                                                                                                                                                                                                                                         |
 | ----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Elevator Call 2.0             | [elevator-call-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts)                   | Simple elevator call demo about acquiring needed access token, fetching building topology and making the elevator call within the WebSocket connection. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api-v2) |
+| Elevator Call 2.0             | [elevator-call-2-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts)                   | Simple elevator call demo about acquiring needed access token, fetching building topology and making the elevator call within the WebSocket connection. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api-v2) |
 | Config                        | [config-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts)                   | An API call to fetch the building configuration such as floors, areas etc. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api-v2)
 | Ping                          | [ping-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts)                   | An API call to check if an API is still alive and responsive. It does not affect the system in any way. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api-v2)
 | Action                         | [get-actions-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts)                   | An API call to list down the actions supported by the group controller. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api-v2)
@@ -27,15 +27,16 @@ The example codes on this document will introduce the main concepts of KONE APIs
 
 To use our APIs, you need an account on [KONE API Portal](https://dev.kone.com/). Once you have registered for an account, create a Sandbox application.
 
-Since the project is a Typescript project, setting it up requires just a little effort. You can find all the necessary code in the [elevator-call-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts). Once the file is run, the following is done:
+Since the project is a Typescript project, setting it up requires just a little effort. You can find all the necessary code in the [elevator-call-2-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-demo.ts). Once the file is run, the following is done:
 
-1. Checking that the necessary variables have been defined: `CLIENT_ID` and `CLIENT_SECRET`.
+1. Checking that the necessary variables have been defined: `CLIENT_ID`, `CLIENT_SECRET` and `BUILDING_ID` in `.env` file.
 2. Fetching an access token from Authentication API without any scope defined. The returned accessToken will include only `inventory/application` grant.
 3. With the access token, making a request towards the resource endpoint to fetch the accessible buildings. The response is an array of building Ids, and the first one is selected for our target building.
-4. Calling the Authentication API again, but this time with a scope to request access to the selected building in the body of the request `scope=callgiving/BUILDING_ID`. The successful response will return a token with a scope that allows API authentication in the following steps.
+4. Calling the Authentication API again, but this time with a scope to request access to the selected building in the body of the request `callgiving/group:BUILDING_ID:GROUP_ID`. The successful response will return a token with a scope that allows API authentication in the following steps.
 5. Calling Building API to retrieve topology information about the selected building.
-6. Setting random sourceId and destinationId based on the previously retrieved building information. These values represent from which area to which the user would like to move using the elevator.
-7. Sending Elevator Call or Service Robot Call request (based on the defined scope).
+6. For destination call, setting sourceId (`payload.area`) and destinationId (`payload.call.destination`) based on the previously retrieved building information. These values represent from which area between which the user would like to move using the elevator.
+7. For landing call, setting sourceId (`payload.area`) and direction (`TBD`) based on the previously retrieved building information. These values order the elevator to move to a specific floor.
+8. Sending Elevator Call or Service Robot Call request (based on the defined scope).
 
 ## Requirements
 
