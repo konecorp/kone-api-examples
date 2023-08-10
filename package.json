@@ -6,6 +6,7 @@
   "main": "src/examples/elevator-call-2-demo.ts",
   "scripts": {
     "start": "ts-node src/examples/elevator-call-2-demo.ts",
+    "start:cancel-call": "ts-node src/examples/elevator-cancel-call-demo.ts",
     "start:monitor": "ts-node src/examples/monitoring-siteapi-demo.ts",
     "start:ping": "ts-node src/examples/ping-demo.ts",
     "start:config": "ts-node src/examples/config-demo.ts",
