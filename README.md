@@ -5,8 +5,9 @@
 The example codes on this document will introduce the main concepts of KONE APIs. By setting up and running this example code project, you can apprehend the main idea and flow of using KONE APIs. It is highly recommended to read [the technical API documentation](https://dev.kone.com/api-portal/dashboard/developer-guide/overview-api) before starting to use this example project.
 
 - With **Authentication API 2.0** you can receive the access token that enables you to make an API call, and
-- With **Elevator call WebSocket API 2.0** you can execute elevator calls and receive real-time data about the call and the assigned elevators, and
+- With **Elevator Call WebSocket API 2.0** you can execute elevator calls and receive real-time data about the call and the assigned elevators, and
 - With **Common APIs** you can list down building configuration, actions supported by group controller and check the responsiveness of an API, and
+- With **Site Monitoring API** you can fetch the real time information about the lift status, call state, deck position, door state etc., and
 - With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details and
 - With **Equipment Status API 2.0** you can retrieve information about your accessible equipment regarding availability, entrapment, and movement.
 
