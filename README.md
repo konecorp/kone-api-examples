@@ -57,12 +57,13 @@ Follow the instructions to start using this project
 
 `npm ci`
 
-3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `src/examples/elevator-call-demo.ts`
+3. Open the project in an IDE such as [Visual Studio Code](https://code.visualstudio.com/) and open `.env` file
 4. Set the following variables:
    - **CLIENT_ID**, the clientId generated when creating the application in KONE API Portal
    - **CLIENT_SECRET**, the client secret received when creating the application
+   - **BUILDING_ID**, the building Id for which you want to perform API calls
 
-![Alt text](./img/variables3.jpg?raw=true 'variables')
+![Alt text](./img/variables4.jpg?raw=true 'Environment variables')
 
 5. Run in the terminal while being in the project folder:
 
@@ -73,14 +74,14 @@ Follow the instructions to start using this project
 To run this project using a debugger, complete the steps in the instructions above without running step 5. Then continue following this example, which uses Visual Studio Code debugger:
 
 1. Click on the debugger icon on the left side.
-2. If you want, set breakpoints within the `src/examples/elevator-call-demo.ts` file.
+2. If you want, set breakpoints within the `src/examples/elevator-call-2-demo.ts` file.
 3. Run in debugger mode by pressing on the running icon in the debugger tab.
 
 ![Full debugger flow](./img/full-debugger-flow.jpg?raw=true 'debugger')
 
 ## Running other examples
 
-Other examples can be found in `src/examples` folder. To run any of them, the **CLIENT_ID** and **CLIENT_SECRET** variables need to be defined. Since the same variables are used in each example, you can set them up locally as environmental variables or write a .env file to the root directory. For more information on .env files, please see https://www.npmjs.com/package/dotenv.
+Other examples can be found in `src/examples` folder. To run any of them, the **CLIENT_ID**, **CLIENT_SECRET** and **BUILDING_ID** variables need to be defined. Since the same variables are used in each example, you can set them up locally as environmental variables or in a .env file to the root directory. For more information on .env files, please see https://www.npmjs.com/package/dotenv.
 
 Any of the examples can be started with the following syntax:
 
