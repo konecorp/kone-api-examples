@@ -13,7 +13,7 @@ import {
 } from '../common/koneapi'
 
 /**
- * Update these two variables with your own credentials or set them up as environment variables.
+ *  Update these two variables with your own credentials or set them up as environment variables.
  */
 const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf48ab0-a902-4b52-8c53-1a9aede716e5'
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
