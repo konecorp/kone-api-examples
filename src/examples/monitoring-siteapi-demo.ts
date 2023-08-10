@@ -13,10 +13,11 @@ import {
 } from '../common/koneapi'
 
 /**
- *  Update these two variables with your own credentials or set them up as environment variables.
+ * Update these two variables with your own credentials or set them up as environment variables.
  */
 const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf48ab0-a902-4b52-8c53-1a9aede716e5'
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
+const BUILDING_ID: string = process.env.BUILDING_ID || ''
 
 /**
  * Function is used to log out incoming WebSocket messages
@@ -27,6 +28,7 @@ const onWebSocketMessage = (data: string): void => {
   let dataBlob = JSON.parse(data)
 
   console.log('Incoming WebSocket message', dataBlob)
+  console.log('timing ' + new Date())
 }
 
 /**
@@ -37,44 +39,51 @@ const start = async () => {
 
   // Fetch the access token with both application/inventory scope and access to execute elevator calls on any building
   // accessible to the application - note that if you have many (100+) resources, you cannot use wildcards
-  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, ['application/inventory', 'callgiving/*'])
+  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, [
+    'application/inventory',
+    `callgiving/group:${BUILDING_ID}:1`,
+  ])
   console.log('AccessToken successfully fetched')
 
   // Fetch the building ids to which the user has access to, and make sure that we get at least one building
-  const buildings = await fetchResources(accessToken, 'building')
-  console.log('List of accessible buildings:', buildings)
+  // const buildings = await fetchResources(accessToken, 'group')
+  // console.log('List of accessible buildings:', buildings)
 
   // Select the first available building
-  const targetBuildingId = buildings[0]
-
+  const targetBuildingId = `building:${BUILDING_ID}`
+  // const targetBuildingId = buildings[0]
   // Fetch the topology of the specific building
-  const buildingTopology = await fetchBuildingTopology(accessToken, targetBuildingId)
-
-  // Using the building topology fetched above to randomly set the source area id and destination area id, since this is purely a demonstration
-  // If the areas are the same or there is no lift that can move between the areas you will get an error. Restart the process for a new try.
-  const randomSourceArea: Area = _.sample(buildingTopology.areas)
-  const randomDestinationArea: Area = _.sample(buildingTopology.areas)
 
   // Open the WebSocket connection
   const webSocketConnection = await openWebSocketConnection(accessToken)
-  console.log('WebSocket open')
+  console.log('WebSocket open ' + new Date())
 
   // Add handler for incoming messages
   webSocketConnection.on('message', (data: any) => onWebSocketMessage(data))
 
   // Build the call payload using the areas previously generated
-  const destinationCallPayload: DestinationCallPayload = {
-    type: 'lift-call',
-    callType: 'normal', // normal | robot
-    callAction: 'destination',
+  const destinationCallPayload: any = {
+    type: 'site-monitoring',
     requestId: uuidv4(),
     buildingId: targetBuildingId,
-    sourceId: randomSourceArea.areaId,
-    destinationId: randomDestinationArea.areaId,
-    monitorEvents: ['call', 'deck'], // It is possible to monitor: 'call', 'door', 'deck'
-    keepAlive: false, // optional, default to false
+    callType: 'monitor',
+    // callType: 'config',
+    groupId: '1',
+    payload: {
+      sub: 'somethinaaa1',
+      duration: 300,
+      // 'action/+/+',
+      // '+/status',
+      // '+/next_stop_eta',
+      // '+/stopping',
+      // 'call_state/lift1/+', '+/position', '+/doors'
+      // subtopics: ['+/next_stop_eta', 'call_state/+/+'],
+      // subtopics: ['+/status'],
+      subtopics: ['+/doors', '+/position', 'call_state/+/+'],
+    },
   }
 
+  console.log(destinationCallPayload)
   // execute the call within the open WebSocket connection
   webSocketConnection.send(JSON.stringify(destinationCallPayload))
 }
