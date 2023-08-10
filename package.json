@@ -5,11 +5,10 @@
   "homepage": "https://dev.kone.com",
   "main": "src/examples/elevator-call-2-demo.ts",
   "scripts": {
-    "start": "ts-node src/examples/ping-demo.ts",
-    "start:special": "ts-node src/examples/special-call-demo.ts",
+    "start": "ts-node src/examples/elevator-call-2-demo.ts",
+    "start:ping": "ts-node src/examples/ping-demo.ts",
     "start:config": "ts-node src/examples/config-demo.ts",
     "start:actions": "ts-node src/examples/actions-demo.ts",
-    "start:elevator-call-demo": "ts-node src/examples/elevator-call-demo.ts",
     "start:websocket-sessions-basic": "ts-node src/examples/websocket-sessions-basic.ts",
     "start:websocket-sessions-advanced": "ts-node src/examples/websocket-sessions-advanced.ts",
     "start:operational-api-demo": "ts-node src/examples/operational-apis-demo.ts",
