@@ -30,9 +30,9 @@ const onWebSocketMessage = (data: string): void => {
   let dataBlob = JSON.parse(data)
 
   console.log('Incoming WebSocket message', dataBlob)
-  if (dataBlob.session_id) {
-    console.log(`Making monitoring request ${dataBlob.session_id}`)
-    activateMonitoring(dataBlob.session_id)
+  if (dataBlob.data.session_id) {
+    console.log(`Making monitoring request ${dataBlob.data.session_id}`)
+    activateMonitoring(dataBlob.data.session_id)
   }
   console.log('timing ' + new Date())
 }
@@ -41,7 +41,7 @@ function activateMonitoring(session_id: number) {
   // Build the call payload using the areas previously generated
   const monitoringCallPayload: any = {
     type: 'site-monitoring',
-    // requestId: uuidv4(),
+    requestId: uuidv4(),
     buildingId: targetBuildingId,
     callType: 'monitor',
     // callType: 'config',
