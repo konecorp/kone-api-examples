@@ -10,6 +10,7 @@
     "start:ping": "ts-node src/examples/ping-demo.ts",
     "start:config": "ts-node src/examples/config-demo.ts",
     "start:actions": "ts-node src/examples/actions-demo.ts",
+    "start:call-monitor": "ts-node src/examples/call-and-monitoring-demo.ts",
     "start:websocket-sessions-basic": "ts-node src/examples/websocket-sessions-basic.ts",
     "start:websocket-sessions-advanced": "ts-node src/examples/websocket-sessions-advanced.ts",
     "start:operational-api-demo": "ts-node src/examples/operational-apis-demo.ts",

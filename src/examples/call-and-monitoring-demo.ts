@@ -19,6 +19,8 @@ const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf4
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
 const BUILDING_ID: string = process.env.BUILDING_ID || ''
 
+let webSocketConnection: any
+let targetBuildingId: string
 /**
  * Function is used to log out incoming WebSocket messages
  *
@@ -28,9 +30,39 @@ const onWebSocketMessage = (data: string): void => {
   let dataBlob = JSON.parse(data)
 
   console.log('Incoming WebSocket message', dataBlob)
+  if (dataBlob.session_id) {
+    console.log(`Making monitoring request ${dataBlob.session_id}`)
+    activateMonitoring(dataBlob.session_id)
+  }
   console.log('timing ' + new Date())
 }
 
+function activateMonitoring(session_id: number) {
+  // Build the call payload using the areas previously generated
+  const monitoringCallPayload: any = {
+    type: 'site-monitoring',
+    // requestId: uuidv4(),
+    buildingId: targetBuildingId,
+    callType: 'monitor',
+    // callType: 'config',
+    groupId: '1',
+    payload: {
+      sub: 'KCESmartLiftClient2',
+      duration: 300,
+      subtopics: [
+        `call_state/${session_id}/being_allocated`,
+        `call_state/${session_id}/being_served`,
+        `call_state/${session_id}/served_soon`,
+        `call_state/${session_id}/served`,
+        // `call_state/${session_id}/+`,
+      ],
+    },
+  }
+
+  console.log('monitoring request payload')
+  console.log(JSON.stringify(monitoringCallPayload))
+  webSocketConnection.send(JSON.stringify(monitoringCallPayload))
+}
 /**
  * Main function that starts the script execution
  */
@@ -50,34 +82,29 @@ const start = async () => {
   // console.log('List of accessible buildings:', buildings)
 
   // Select the first available building
-  const targetBuildingId = `building:${BUILDING_ID}`
+  targetBuildingId = `building:${BUILDING_ID}`
   // const targetBuildingId = buildings[0]
   // Fetch the topology of the specific building
 
   // Open the WebSocket connection
-  const webSocketConnection = await openWebSocketConnection(accessToken)
+  webSocketConnection = await openWebSocketConnection(accessToken)
   console.log('WebSocket open ' + new Date())
 
   // Add handler for incoming messages
   webSocketConnection.on('message', (data: any) => onWebSocketMessage(data))
 
-  // Build the call payload using the areas previously generated
   const destinationCallPayload: any = {
-    type: 'site-monitoring',
-    requestId: uuidv4(),
+    type: 'lift-call-api-v2',
     buildingId: targetBuildingId,
-    callType: 'monitor',
-    // callType: 'config',
+    callType: 'action',
     groupId: '1',
     payload: {
-      sub: 'somethinaaa1',
-      duration: 300,
-      // subtopics: ['action/+/+'],
-      // subtopics: ['+/next_stop_eta'],
-      // subtopics: ['+/stopping'],
-      // subtopics: ['call_state/+/+'],
-      // subtopics: ['+/status'],
-      subtopics: ['+/position','+/doors'],
+      request_id: getRequestId(),
+      area: 3000,
+      time: '2020-10-10T07:17:33.298515Z',
+      terminal: 1,
+      // action 2 is for DCS call
+      call: { action: 2, destination: 5000 },
     },
   }
 
@@ -86,4 +113,7 @@ const start = async () => {
   webSocketConnection.send(JSON.stringify(destinationCallPayload))
 }
 
+function getRequestId() {
+  return Math.floor(Math.random() * 1000000000)
+}
 start()
