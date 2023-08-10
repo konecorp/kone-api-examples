@@ -20,13 +20,12 @@ import {
  * Variables that contain the main endpoints used in this demo project.
  */
 const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
-const API_AUTH_TOKEN_ENDPOINT = process.env.API_AUTH_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v1/oauth2/token`
-const API_AUTH_LIMITED_TOKEN_ENDPOINT =
-  process.env.API_AUTH_LIMITED_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v1/oauth2/limited-token`
-const API_RESOURCES_ENDPOINT =
-  process.env.API_RESOURCES_ENDPOINT || `https://${API_HOSTNAME}/api/v1/application/self/resources`
+const API_AUTH_TOKEN_ENDPOINT_V2 = process.env.API_AUTH_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v2/oauth2/token`
+const API_AUTH_LIMITED_TOKEN_ENDPOINT = process.env.API_AUTH_LIMITED_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v1/oauth2/limited-token`
+const API_RESOURCES_ENDPOINT = process.env.API_RESOURCES_ENDPOINT || `https://${API_HOSTNAME}/api/v1/application/self/resources`
 const API_TOPOLOGY_ENDPOINT = process.env.API_TOPOLOGY_ENDPOINT || `https://${API_HOSTNAME}/api/v1/buildings`
-const WEBSOCKET_ENDPOINT = process.env.WEBSOCKET_ENDPOINT || `wss://${API_HOSTNAME}/stream-v1`
+const WEBSOCKET_ENDPOINT = process.env.WEBSOCKET_ENDPOINT || `wss://${API_HOSTNAME}/stream-v2`
+
 const WEBSOCKET_SUBPROTOCOL = process.env.WEBSOCKET_SUBPROTOCOL || 'koneapi'
 
 /**
@@ -46,7 +45,7 @@ export async function fetchAccessToken(
 ): Promise<AccessToken> {
   const requestConfig: AxiosRequestConfig = {
     method: 'POST',
-    url: API_AUTH_TOKEN_ENDPOINT,
+    url: API_AUTH_TOKEN_ENDPOINT_V2,
     auth: {
       username: clientId,
       password: clientSecret,
@@ -62,6 +61,7 @@ export async function fetchAccessToken(
 
   try {
     const requestResult = await axios(requestConfig)
+    console.log(`Access token: ${JSON.stringify(requestResult.data)}`)
 
     // get the accessToken from the response
     const accessToken = requestResult.data.access_token
@@ -140,6 +140,7 @@ export const fetchResources = async (accessToken: AccessToken, resourceType: str
 
   // Execute the request
   const result = await axios(requestConfig)
+  console.log(`Resources: ${result.data}`)
 
   // Assert data to be our wanted list of buildings
   const resources = (result.data as string[]).filter((resource) => resource.startsWith(`${resourceType}:`))
@@ -167,12 +168,17 @@ export async function fetchBuildingTopology(accessToken: AccessToken, buildingId
   }
 
   // Execute the request
-  const result = await axios(requestConfig)
+  try {
+    const result = await axios(requestConfig)
 
-  // Assert data to be our wanted building topology information
-  const buildingTopology = result.data as BuildingTopology
+    // Assert data to be our wanted building topology information
+    const buildingTopology = result.data as BuildingTopology
 
-  return buildingTopology
+    return buildingTopology
+  } catch (err) {
+    console.log(err)
+    throw err
+  }
 }
 
 /**
@@ -213,6 +219,8 @@ export async function openWebSocketConnection(accessToken: AccessToken): Promise
     })
 
     ws.on('open', async (_event: any) => {
+      console.log('web socket ocnnection opened ')
+      console.log(ws.url.split('?'))
       // Once the connection is open, resolve promise with the WebSocket instance
       ws.removeAllListeners('close')
       resolve(ws)
