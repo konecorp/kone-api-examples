@@ -3,11 +3,8 @@ dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 
-import { Area, DestinationCallPayload } from '../common/types'
 import {
   fetchAccessToken,
-  fetchBuildingTopology,
-  fetchResources,
   openWebSocketConnection,
   validateClientIdAndClientSecret,
 } from '../common/koneapi'
@@ -49,13 +46,8 @@ const start = async () => {
   ])
   console.log('AccessToken successfully fetched')
 
-  // Fetch the building ids to which the user has access to, and make sure that we get at least one building
-  // const buildings = await fetchResources(accessToken, 'group')
-  // console.log('List of accessible buildings:', buildings)
-
   // Select the first available building
   const targetBuildingId = `building:${BUILDING_ID}`
-  // const targetBuildingId = buildings[0]
   // Fetch the topology of the specific building
 
   // Open the WebSocket connection
@@ -70,7 +62,6 @@ const start = async () => {
     type: 'common-api',
     requestId: uuidv4(),
     buildingId: targetBuildingId,
-    // callType: 'actions',
     callType: 'config',
     groupId: '1',
   }

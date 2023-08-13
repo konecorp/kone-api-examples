@@ -3,11 +3,8 @@ dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 
-import { Area, DestinationCallPayload } from '../common/types'
 import {
   fetchAccessToken,
-  fetchBuildingTopology,
-  fetchResources,
   openWebSocketConnection,
   validateClientIdAndClientSecret,
 } from '../common/koneapi'
@@ -53,8 +50,7 @@ function activateMonitoring(session_id: number) {
         `call_state/${session_id}/being_allocated`,
         `call_state/${session_id}/being_served`,
         `call_state/${session_id}/served_soon`,
-        `call_state/${session_id}/served`,
-        // `call_state/${session_id}/+`,
+        `call_state/${session_id}/served`
       ],
     },
   }
@@ -77,13 +73,8 @@ const start = async () => {
   ])
   console.log('AccessToken successfully fetched')
 
-  // Fetch the building ids to which the user has access to, and make sure that we get at least one building
-  // const buildings = await fetchResources(accessToken, 'group')
-  // console.log('List of accessible buildings:', buildings)
-
   // Select the first available building
   targetBuildingId = `building:${BUILDING_ID}`
-  // const targetBuildingId = buildings[0]
   // Fetch the topology of the specific building
 
   // Open the WebSocket connection
