@@ -33,14 +33,12 @@ To use our APIs, you need an account on [KONE API Portal](https://dev.kone.com/)
 
 Since the project is a Typescript project, setting it up requires just a little effort. You can find all the necessary code in the [elevator-call-2-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-2-demo.ts). Once the file is run, the following is done:
 
-1. Creating `.env` file in a root directory and checking that the necessary variables have been defined: `CLIENT_ID`, `CLIENT_SECRET` and `BUILDING_ID` in `.env` file. Example has been given in `.env.example` file.
-2. Fetching an access token from Authentication API without any scope defined. The returned accessToken will include only `inventory/application` grant.
-3. With the access token, making a request towards the resource endpoint to fetch the accessible buildings. The response is an array of building Ids, and the first one is selected for our target building.
-4. Calling the Authentication API again, but this time with a scope to request access to the selected building and group in the body of the request `callgiving/group:BUILDING_ID:GROUP_ID`. The successful response will return a token with a scope that allows API authentication in the following steps.
-5. Calling Building API to retrieve topology information about the selected building.
-6. For destination call, setting sourceId (`payload.area`) and destinationId (`payload.call.destination`) based on the previously retrieved building information. These values represent from which area between which the user would like to move using the elevator.
-7. For landing call, setting sourceId (`payload.area`) and direction based on the previously retrieved building information. These values order the elevator to move to a specific floor.
-8. Sending Elevator Call or Service Robot Call request (based on the defined scope).
+1. Creating a new `.env` file in a root directory or renaming existing `.env.example` file to `.env` and then editing the same with the variable details mentioned in Step 2.  
+2. Checking that the necessary variables have been defined: `CLIENT_ID`, `CLIENT_SECRET` and `BUILDING_ID` in `.env` file.
+3. Fetching an access token from Authentication API v2 with a scope to request access to the building and group in the body of the request `callgiving/group:BUILDING_ID:GROUP_ID` and `inventory/application`. The successful response will return a token with a scope that includes `inventory/application` grant and also allows API authentication for the following steps.
+4. For destination call, setting sourceId (`payload.area`) and destinationId (`payload.call.destination`) based on the previously retrieved building information. These values represent from which area between which the user would like to move using the elevator.
+5. For landing call, setting sourceId (`payload.area`) and direction based on the previously retrieved building information. These values order the elevator to move to a specific floor.
+6. Sending Elevator Call v2 API.
 
 ## Requirements
 
