@@ -1,5 +1,9 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+import { v4 as uuidv4 } from 'uuid'
+import _ from 'lodash'
 import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEquipmentAvailability, fetchEquipmentEntrapment, fetchEquipmentMovement } from '../common/equipment-status-2-supporting-functions'
+import { fetchEquipmentAvailability, fetchEquipmentStatus, fetchEquipmentMovement, fetchDoorEvent, fetchButtonEvent, fetchEscalatorEvent } from '../common/equipment-status-2-supporting-functions'
 
 
 /**
@@ -20,15 +24,31 @@ const demoEquipmentStatusApi2RestApi = async (accessToken: string, equipmentId: 
   const availability = await fetchEquipmentAvailability(accessToken, [equipmentId])
   console.log(JSON.stringify(availability, undefined, 2))
 
-  // Fetch entrapment information of equipment
-  console.log(`Fetch entrapment information of the equipment ${equipmentId}`)
-  const entrapment = await fetchEquipmentEntrapment(accessToken, [equipmentId])
-  console.log(JSON.stringify(entrapment, undefined, 2))
+  // Fetch status information of equipment
+  console.log(`Fetch status information of the equipment ${equipmentId}`)
+  const status = await fetchEquipmentStatus(accessToken, [equipmentId])
+  console.log(JSON.stringify(status, undefined, 2))
 
   // Fetch movement information of equipment
   console.log(`Fetch movement information of the equipment ${equipmentId}`)
   const movement = await fetchEquipmentMovement(accessToken, [equipmentId])
   console.log(JSON.stringify(movement, undefined, 2))
+
+  // Fetch door event information of equipment
+  console.log(`Fetch door information of the equipment ${equipmentId}`)
+  const door = await fetchDoorEvent(accessToken, [equipmentId])
+  console.log(JSON.stringify(door, undefined, 2))
+
+   // Fetch button event information of equipment
+   console.log(`Fetch button information of the equipment ${equipmentId}`)
+   const button = await fetchButtonEvent(accessToken, [equipmentId])
+   console.log(JSON.stringify(button, undefined, 2))
+
+    // Fetch direction event information of equipment
+    console.log(`Fetch direction information of the equipment ${equipmentId}`)
+    const direction = await fetchEscalatorEvent(accessToken, [equipmentId])
+    console.log(JSON.stringify(direction, undefined, 2))
+ 
 }
 
 

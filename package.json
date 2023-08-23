@@ -15,6 +15,8 @@
     "start:websocket-sessions-basic": "ts-node src/examples/websocket-sessions-basic.ts",
     "start:websocket-sessions-advanced": "ts-node src/examples/websocket-sessions-advanced.ts",
     "start:operational-apis-demo": "ts-node src/examples/operational-apis-demo.ts",
+    "start:equipment-status-2-restapi-demo": "ts-node src/examples/equipment-status-2-restapi-demo.ts",
+    "start:service-info-2-restapi-demo": "ts-node src/examples/service-info-2-restapi-demo.ts",
     "build": "npm run clean && tsc -b .",
     "clean": "rimraf dist"
   },

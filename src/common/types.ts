@@ -506,18 +506,34 @@ export interface Availability {
 
 /**
  * Equipment Status API 2.0
- * Entrapment information of equipment
- * Refer to API portal documentation for more details of entrapment data format
+ * Status information of equipment
+ * Refer to API portal documentation for more details of Status data format
  */
-export interface Entrapment {
+export interface Status {
   equipmentId: string
   entrapment: boolean
+  outOfOrder: boolean
+  status: string
+  equipmentStatus: string
+  equipmentOutOfOrderDate: string
+  equipmentBackInOrderDate: string
+  equipmentLocationId: string
+  equipmentLocationDescription: string
+  addressStreet: string
+  addressPostCode: string
+  addressCity: string
+  addressCountry: string
+  equipmentType: string
+  customerEquipmentLocationId: string
+  equipmentNumber: string
+  customerEquipmentNumber: string
+  equipmentFunctionalLocation: string
+  equipmentFunctionalLocationDescription: string
   maintenance: {
-    status: string | null
-    technicianComment: string | null
+    status: string 
   }
-  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
-  lastUpdate?: string
+  // equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
+  // lastUpdate?: string
 }
 
 /**
@@ -547,4 +563,145 @@ export interface Movement {
   stopMode?: string
   equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
   lastUpdate?: string
+}
+
+/**
+ * Equipment Status API 2.0
+ * Elevator Door event information
+ * Refer to API portal documentation for more details of door event data format
+ */
+export interface DoorEvent {
+  equipmentId: string
+  lastUpdate: string
+  timestamp: string
+  doorOpenStartedTime: string
+  doorClosedTime: string
+  doorSideCode: number
+  doorSideDesc: string
+  deckIndexCode: number
+  deckIndexDesc: string
+  floor: number
+  floorMarking: string
+  loadBeforeDoorOpen: number
+  loadAfterDoorClose: number
+  modeCode: number
+  modeDesc: string
+  openingDuration: number
+  closingDuration: number
+  closingModeCode: number
+  closingModeDesc: string
+  reopensByPhotoCell: number
+  reopensByDOB: number
+  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
+}
+
+/**
+ * Equipment Status API 2.0
+ * Elevator Button event information
+ * Refer to API portal documentation for more details of button event data format
+ */
+export interface Button {
+  equipmentId: string
+  lastUpdate: string
+  timestamp: string
+  landingCallType: {
+    floor: number
+    side: string
+    direction: string
+    type: string
+  }
+  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' >
+}
+
+/**
+ * Equipment Status API 2.0
+ * Escalator movement information
+ * Refer to API portal documentation for more details of escalator movement data format
+ */
+export interface EscalatorMovement {
+  equipmentId: string
+  lastUpdate: string
+  statusChangeCode: string
+  statusChangeDesc: string
+  previousSpeed: number
+  currentSpeed: number
+  currentDirectionCode: number
+  currentDirectionDesc: string
+  previousDirectionCode: number
+  previousDirectionDesc: string
+  brakingDistance: number
+  serviceModeCode: number
+  serviceModeDesc: string
+  movementEventType: string
+  timestamp: string
+  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' >
+}
+
+/**
+ * Service Info API 2
+ * List equipment service orders
+ * Refer to API portal documentation for more details of List equipment service orders data format
+ */
+export interface ListServiceOrder{
+  activityType: string
+  serviceOrderNumber: string
+  customerEquipmentNumber: string
+  workOrderNumber: string
+}
+
+/**
+ * Service Info API 2
+ * Get service order details
+ * Refer to API portal documentation for more details of Get service order details data format
+ */
+export interface GetServiceOrder{
+  activityType: string
+  status: string
+  description: string
+  actualArrivalDateTime: string
+  finishedDateTime: string
+  serviceOrderNumber: string
+  customerEquipmentNumber: string
+  workOrderNumber: string
+  jobDescription: string
+  additionalCommentsToCustomer: string
+  equipmentFailureReason: string
+  failedComponentCode: string
+  equipmentConditionOnArrival: string
+  equipmentConditionOnArrivalDesc: string
+  equipmentConditionOnDeparture: string
+  equipmentConditionOnDepartureDesc: string
+  technicianActionCode: string
+  entrapment: boolean
+  serviceContractNumber: string
+  earliestStartDate: string
+  workCenter: string
+  serviceTerritoryCode: string
+  serviceTerritoryName: string
+  workOrderStatus: string
+  serviceOrderType: string
+  serviceOrderTypeDesc: string
+  assemblyLocationCode: string
+  customerPurchaseOrderNumber: string
+  technicianRegistrationNumber: string
+  workTime: number
+  workTimeUnit: string
+  customer: string
+  workOrderPlannedStartDate: string
+  companyCode: string
+  contactPersonId: string
+  activityTypeCode: string
+  activityTypeCodeDesc: string
+  systemStatus: string
+  workOrderStatusCode: string
+  technicianComment: string
+  workOrderLineItems: {
+    operationText: string
+  }
+  descriptionOfWork: string
+  invoices:{
+    costAmount: number
+    costCurrency: string
+    name: string
+  }
 }
