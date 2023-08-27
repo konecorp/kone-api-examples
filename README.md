@@ -10,7 +10,16 @@ The example codes on this document will introduce the main concepts of KONE APIs
    - With **Common APIs** you can list down building configuration, actions supported by group controller and check the responsiveness of an API, and
    - With **Site Monitoring API** you can fetch the real time information about the lift status, call state, deck position, door state etc., and
 - With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details and
-- With **Equipment Status API v2** you can retrieve information about your accessible equipment regarding availability, entrapment, and movement.
+- **Equipment Status API v2**:
+   - With **Get equipment availability** you can fetch information about the last known availability status of KONE and NON-KONE equipment and
+   - with **Get equipment status** you can retrieve information of equipment's current status
+   - With **Get elevator movement event** you can fetch movement information of KONE and NON-KONE equipment
+   - With **Elevator-door-button-events** you can retrieve information related to the status of an elevator door also status of an elevator landing call station button for elevator upward or downward journey requests 
+   - With **Escalator-event** you can retrieve information related to escalator speed and direction which direction the escalator is moving. It also displays previous direction, previous speed and braking distance also, It returns last saved events.
+- **Service Info API v2**:
+   - With **Service orders** you can fetch information about the equipment’s entire maintenance history which includes recent as well as past data like activity types, dates, service order related fields
+   - With **Service order details** you can fetch detailed information of service orders can be fetched with the help of work order number which will provide elaborative fields inclusive to that work order only. Various fields like service order number, status, invoices, customer equipment number, description of the potential issue etc.
+
 
 ### Examples
 
@@ -25,7 +34,17 @@ The example codes on this document will introduce the main concepts of KONE APIs
 | WebSocket sessions - Basic    | [websocket-sessions-basic.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/websocket-sessions-basic.ts)    | Introduction to the WebSocket sessions within the Elevator WebSocket API.                                                                                                                                                                                                           |
 | WebSocket sessions - Advanced | [websocket-sessions-advanced.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/websocket-sessions-advanced.ts) | Advanced demo about the WebSocket session handling. Includes proper error handling and interaction with the API in cases like timeouts.                                                                                                                                             |
 | Operational APIs              | [operational-apis-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/operational-apis-demo.ts)             | Simple demo about acquiring needed access token, fetching basic information of an equipment and its maintenance status, get list of all service orders, and detailed information of a service order.                                                                                                                                             |
-| Equipment Status API v2       | [equipment-status-2-restapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/equipment-status-2-restapi-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about availability, entrapment and movement.                |
+| Get equipment availability      | [get-equipment-availability-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-equipment-availability-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about availability.                |
+
+| Get equipment status      | [get-equipment-status-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-equipment-status-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about status.                |
+
+| Get elevator movement      | [get-elevator-movement-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-elevator-movement-event-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about elevator movement event.                |
+
+| Get elevator door-button events     | [get-elevator-door-button-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-elevator-door-button-event-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about door-button events.                |
+
+| Get escalator event     | [get-escalator-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-escalator-event-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about escalator movement event.                |
+
+| Service Info     | [service-info-2-restapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/service-info-2-restapi-demo.ts)             | Simple demo about acquiring needed access token, fetching information of equipment about escalator movement event.                |
 
 ## How the project works
 
