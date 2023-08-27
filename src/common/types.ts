@@ -634,7 +634,17 @@ export interface EscalatorMovement {
   serviceModeDesc: string
   movementEventType: string
   timestamp: string
-  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' >
+  equipmentInfo: {
+    equipmentNumber?: string
+    serialNumber?: string
+    type?: string
+    description?: string
+    city?: string
+    countryCode?: string
+    postalCode?: string
+    name?: string
+    street?: string
+  }
 }
 
 /**
