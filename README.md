@@ -12,12 +12,12 @@ The example codes on this document will introduce the main concepts of KONE APIs
 - With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details and
 - **Operational APIs v2**:
    - **Equipment Status API v2**:
-   - With **Get equipment availability** you can fetch information about the last known availability status of KONE and NON-KONE equipment and
-   - With **Get equipment status** you can retrieve information of equipment's current status
-   - With **Get elevator movement event** you can fetch movement information of KONE and NON-KONE equipment
-   - With **Elevator-door-button-events** you can retrieve information related to the status of an elevator door also status of an elevator landing call station button for elevator upward or downward journey requests 
-   - With **Escalator-event** you can retrieve information related to escalator speed and direction which direction the escalator is moving. It also displays previous direction, previous speed and braking distance also, It returns last saved events.
-   - **Service Info API v2**:
+    - With **Get equipment availability** you can fetch information about the last known availability status of KONE and NON-KONE equipment and
+    - With **Get equipment status** you can retrieve information of equipment's current status
+    - With **Get elevator movement event** you can fetch movement information of KONE and NON-KONE equipment
+    - With **Elevator-door-button-events** you can retrieve information related to the status of an elevator door also status of an elevator landing call station button for elevator upward or downward journey requests 
+    - With **Escalator-event** you can retrieve information related to escalator speed and direction which direction the escalator is moving. It also displays previous direction, previous speed and braking distance also, It returns last saved events.
+  - **Service Info API v2**:
    - With **Service orders** you can fetch information about the equipment’s entire maintenance history which includes recent as well as past data like activity types, dates, service order related fields
    - With **Service order details** you can fetch detailed information of service orders can be fetched with the help of work order number which will provide elaborative fields inclusive to that work order only. Various fields like service order number, status, invoices, customer equipment number, description of the potential issue etc.
 
