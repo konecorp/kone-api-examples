@@ -1,5 +1,9 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+import { v4 as uuidv4 } from 'uuid'
+import _ from 'lodash'
 import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEquipmentAvailability, fetchEquipmentEntrapment, fetchEquipmentMovement } from '../common/equipment-status-2-supporting-functions'
+import { fetchEquipmentMovement } from '../common/equipment-status-2-functions'
 
 
 /**
@@ -10,25 +14,16 @@ const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' 
 
 const KEN = 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
 
-
 /**
- * Demo the Equipment Status API 2.0 REST API
+ * Demo the Get Elevator Movement
  */
-const demoEquipmentStatusApi2RestApi = async (accessToken: string, equipmentId: string) => {
-  // Fetch availability information of equipment
-  console.log(`Fetch availability information of the equipment ${equipmentId}`)
-  const availability = await fetchEquipmentAvailability(accessToken, [equipmentId])
-  console.log(JSON.stringify(availability, undefined, 2))
-
-  // Fetch entrapment information of equipment
-  console.log(`Fetch entrapment information of the equipment ${equipmentId}`)
-  const entrapment = await fetchEquipmentEntrapment(accessToken, [equipmentId])
-  console.log(JSON.stringify(entrapment, undefined, 2))
-
+const demoGetElevatorMovement = async (accessToken: string, equipmentId: string) => {
+ 
   // Fetch movement information of equipment
   console.log(`Fetch movement information of the equipment ${equipmentId}`)
   const movement = await fetchEquipmentMovement(accessToken, [equipmentId])
   console.log(JSON.stringify(movement, undefined, 2))
+
 }
 
 
@@ -43,7 +38,7 @@ const start = async () => {
   const accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
 
-  await demoEquipmentStatusApi2RestApi(accessToken, KEN)
+  await demoGetElevatorMovement(accessToken, KEN)
 }
 
 start()
