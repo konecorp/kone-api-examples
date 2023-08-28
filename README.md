@@ -11,7 +11,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
    - With **Site Monitoring API** you can fetch the real time information about the lift status, call state, deck position, door state etc., and
 - With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details and
 - **Operational APIs v2**:
-   - **Equipment Status API v2**:
+ - **Equipment Status API v2**:
     - With **Get equipment availability** you can fetch information about the last known availability status of KONE and NON-KONE equipment and
     - With **Get equipment status** you can retrieve information of equipment's current status
     - With **Get elevator movement event** you can fetch movement information of KONE and NON-KONE equipment
