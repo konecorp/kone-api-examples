@@ -3,7 +3,7 @@ dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 import { fetchAccessToken, fetchResources, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/service-info-2-supporting-functions'
+import { fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/service-info-2-functions'
 
 /**
  * Update these two variables with your own credentials or set them up as environment variables.

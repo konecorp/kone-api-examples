@@ -3,7 +3,7 @@ dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEscalatorEvent } from '../common/equipment-status-2-common-functions'
+import { fetchEscalatorEvent } from '../common/equipment-status-2-functions'
 
 
 /**
