@@ -3,7 +3,7 @@ dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchDoorEvent, fetchButtonEvent } from '../common/equipment-status-2-supporting-functions'
+import { fetchDoorEvent, fetchButtonEvent } from '../common/equipment-status-2-common-functions'
 
 
 /**
@@ -15,9 +15,9 @@ const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' 
 const KEN = 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
 
 /**
- * Demo the Equipment Status API 2.0 REST API
+ * Demo the Get Elevator Door Button Events
  */
-const demoEquipmentStatusApi2RestApi = async (accessToken: string, equipmentId: string) => {
+const demoGetDoorButtonEvent = async (accessToken: string, equipmentId: string) => {
 
   // Fetch door event information of equipment
   console.log(`Fetch door information of the equipment ${equipmentId}`)
@@ -43,7 +43,7 @@ const start = async () => {
   const accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
 
-  await demoEquipmentStatusApi2RestApi(accessToken, KEN)
+  await demoGetDoorButtonEvent(accessToken, KEN)
 }
 
 start()

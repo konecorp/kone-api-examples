@@ -2,8 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { AccessToken, Availability, Status, Movement, DoorEvent, Button, EscalatorMovement} from './types'
 
 const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
-const API_EQUIPMENT_STATUS_2_ENDPOINT = `https://${API_HOSTNAME}/api/v2/equipment/search`
-const API_EQUIPMENT_STATUS_2_ENDPOINT_V2 = `https://${API_HOSTNAME}/api/v2/equipment/elevator`
+const API_EQUIPMENT_STATUS_2_COMMON_ENDPOINT = `https://${API_HOSTNAME}/api/v2/equipment/search`
+const API_EQUIPMENT_STATUS_2_ENDPOINT_DOOR_BUTTON = `https://${API_HOSTNAME}/api/v2/equipment/elevator`
 const API_EQUIPMENT_STATUS_2_ENDPOINT_ESC = `https://${API_HOSTNAME}/api/v2/equipment/escalator/movement`
 
 
@@ -47,7 +47,7 @@ export async function fetchEquipmentAvailability(
     'availability',
     equipmentIds,
     'Failed to fetch availability information',
-    API_EQUIPMENT_STATUS_2_ENDPOINT
+    API_EQUIPMENT_STATUS_2_COMMON_ENDPOINT
   )
 }
 
@@ -65,7 +65,7 @@ export async function fetchEquipmentStatus(
     'status',
     equipmentIds,
     'Failed to fetch status information',
-    API_EQUIPMENT_STATUS_2_ENDPOINT
+    API_EQUIPMENT_STATUS_2_COMMON_ENDPOINT
   )
 }
 
@@ -83,7 +83,7 @@ export async function fetchEquipmentMovement(
     'movement',
     equipmentIds,
     'Failed to fetch movement information',
-    API_EQUIPMENT_STATUS_2_ENDPOINT
+    API_EQUIPMENT_STATUS_2_COMMON_ENDPOINT
   )
 }
 
@@ -101,7 +101,7 @@ export async function fetchDoorEvent(
     'door',
     equipmentIds,
     'Failed to fetch door information',
-    API_EQUIPMENT_STATUS_2_ENDPOINT_V2
+    API_EQUIPMENT_STATUS_2_ENDPOINT_DOOR_BUTTON
   )
 }
 
@@ -119,7 +119,7 @@ export async function fetchButtonEvent(
     'button',
     equipmentIds,
     'Failed to fetch button information',
-    API_EQUIPMENT_STATUS_2_ENDPOINT_V2
+    API_EQUIPMENT_STATUS_2_ENDPOINT_DOOR_BUTTON
   )
 }
 

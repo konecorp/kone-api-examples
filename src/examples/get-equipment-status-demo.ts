@@ -3,7 +3,7 @@ dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEquipmentStatus } from '../common/equipment-status-2-supporting-functions'
+import { fetchEquipmentStatus } from '../common/equipment-status-2-common-functions'
 
 
 /**
@@ -17,7 +17,7 @@ const KEN = 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
 /**
  * Demo the Equipment Status API 2.0 REST API
  */
-const demoEquipmentStatusApi2RestApi = async (accessToken: string, equipmentId: string) => {
+const demoGetEquipmentStatus = async (accessToken: string, equipmentId: string) => {
 
   // Fetch status information of equipment
   console.log(`Fetch status information of the equipment ${equipmentId}`)
@@ -38,7 +38,7 @@ const start = async () => {
   const accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
 
-  await demoEquipmentStatusApi2RestApi(accessToken, KEN)
+  await demoGetEquipmentStatus(accessToken, KEN)
 }
 
 start()
