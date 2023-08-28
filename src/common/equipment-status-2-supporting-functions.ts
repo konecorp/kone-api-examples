@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { AccessToken, Availability, Status, Movement, DoorEvent, Button} from './types'
+import { AccessToken, Availability, Status, Movement, DoorEvent, Button, EscalatorMovement} from './types'
 
 const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
 const API_EQUIPMENT_STATUS_2_ENDPOINT = `https://${API_HOSTNAME}/api/v2/equipment/search`
@@ -131,7 +131,7 @@ export async function fetchButtonEvent(
 export async function fetchEscalatorEvent(
   accessToken: AccessToken,
   equipmentIds: string[]
-): Promise<Button> {
+): Promise<EscalatorMovement> {
   return executeRequest(
     accessToken,
     'direction',
