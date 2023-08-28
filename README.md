@@ -39,7 +39,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 | Get elevator movement          | [get-elevator-movement-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-elevator-movement-event-demo.ts) | Simple demo about acquiring needed access token, fetching information of equipment about elevator movement event.    |
 | Get elevator door-button events| [get-elevator-door-button-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-elevator-door-button-event-demo.ts) | Simple demo about acquiring needed access token, fetching information of equipment about door-button events.        |
 | Get escalator event            | [get-escalator-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-escalator-event-demo.ts)           | Simple demo about acquiring needed access token, fetching information of equipment about escalator movement event. |
-| Service Info                   | [service-info-2-restapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/service-info-2-restapi-demo.ts)   | Simple demo about acquiring needed access token, fetching information of equipment about escalator movement event. |
+| Service Info                   | [service-info-2-restapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/service-info-2-restapi-demo.ts)   | Simple demo about acquiring needed access token, fetching information of equipment detailed information about service orders can be retrieved using the work order number. |
 
 ## How the project works
 
