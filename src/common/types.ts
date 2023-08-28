@@ -592,7 +592,18 @@ export interface DoorEvent {
   closingModeDesc: string
   reopensByPhotoCell: number
   reopensByDOB: number
-  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
+  equipmentInfo: {
+    customerEquipmentNumber?: string
+    equipmentNumber?: string
+    serialNumber?: string
+    type?: string
+    description?: string
+    city?: string
+    countryCode?: string
+    postalCode?: string
+    name?: string
+    street?: string
+  }
 }
 
 /**
@@ -610,7 +621,18 @@ export interface Button {
     direction: string
     type: string
   }
-  equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' >
+  equipmentInfo: {
+    customerEquipmentNumber?: string
+    equipmentNumber?: string
+    serialNumber?: string
+    type?: string
+    description?: string
+    city?: string
+    countryCode?: string
+    postalCode?: string
+    name?: string
+    street?: string
+  }
 }
 
 /**
