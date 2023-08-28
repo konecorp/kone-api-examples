@@ -12,7 +12,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 - With **Operational APIs** you can retrieve information about your accessible equipment, maintenance status, list of service orders, and details and
 - **Equipment Status API v2**:
    - With **Get equipment availability** you can fetch information about the last known availability status of KONE and NON-KONE equipment and
-   - with **Get equipment status** you can retrieve information of equipment's current status
+   - With **Get equipment status** you can retrieve information of equipment's current status
    - With **Get elevator movement event** you can fetch movement information of KONE and NON-KONE equipment
    - With **Elevator-door-button-events** you can retrieve information related to the status of an elevator door also status of an elevator landing call station button for elevator upward or downward journey requests 
    - With **Escalator-event** you can retrieve information related to escalator speed and direction which direction the escalator is moving. It also displays previous direction, previous speed and braking distance also, It returns last saved events.
@@ -39,7 +39,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
 | Get elevator movement          | [get-elevator-movement-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-elevator-movement-event-demo.ts) | Simple demo about acquiring needed access token, fetching information of equipment about elevator movement event.    |
 | Get elevator door-button events| [get-elevator-door-button-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-elevator-door-button-event-demo.ts) | Simple demo about acquiring needed access token, fetching information of equipment about door-button events.        |
 | Get escalator event            | [get-escalator-event-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/get-escalator-event-demo.ts)           | Simple demo about acquiring needed access token, fetching information of equipment about escalator movement event. |
-| Service Info                   | [service-info-2-restapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/service-info-2-restapi-demo.ts)   | Simple demo about acquiring needed access token, fetching information of equipment detailed information about service orders can be retrieved using the work order number. |
+| Service Info v2                  | [service-info-2-restapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/service-info-2-restapi-demo.ts)   | Simple demo about acquiring needed access token, fetching information of equipment detailed information about service orders can be retrieved using the work order number. |
 
 ## How the project works
 
