@@ -2,8 +2,8 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
-import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEquipmentStatus } from '../common/equipment-status-2-functions'
+import { fetchAccessToken, validateClientIdAndClientSecret } from '../../../common/koneapi'
+import { fetchEquipmentStatus } from '../../../common/equipment-status-2-functions'
 
 
 /**
