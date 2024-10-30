@@ -2,8 +2,8 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
-import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEscalatorEvent } from '../common/equipment-status-2-functions'
+import { fetchAccessToken, validateClientIdAndClientSecret } from '../../../common/koneapi'
+import { fetchEquipmentAvailability } from '../../../common/equipment-status-2-functions'
 
 
 /**
@@ -15,14 +15,14 @@ const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' 
 const KEN = 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
 
 /**
- * Demo of Escalator Event
+ * Demo the Get Equipement availability
  */
-const demoGetEscalatorEvent = async (accessToken: string, equipmentId: string) => {
+const demoGetEquipmentAvailability = async (accessToken: string, equipmentId: string) => {
+  // Fetch availability information of equipment
+  console.log(`Fetch availability information of the equipment ${equipmentId}`)
+  const availability = await fetchEquipmentAvailability(accessToken, [equipmentId])
+  console.log(JSON.stringify(availability, undefined, 2))
 
-    // Fetch direction event information of equipment
-    console.log(`Fetch direction information of the equipment ${equipmentId}`)
-    const direction = await fetchEscalatorEvent(accessToken, [equipmentId])
-    console.log(JSON.stringify(direction, undefined, 2))
 }
 
 
@@ -37,7 +37,7 @@ const start = async () => {
   const accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
 
-  await demoGetEscalatorEvent(accessToken, KEN)
+  await demoGetEquipmentAvailability(accessToken, KEN)
 }
 
 start()

@@ -2,8 +2,8 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
-import { fetchAccessToken, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEquipmentAvailability } from '../common/equipment-status-2-functions'
+import { fetchAccessToken, validateClientIdAndClientSecret } from '../../../common/koneapi'
+import { fetchDoorEvent, fetchButtonEvent } from '../../../common/equipment-status-2-functions'
 
 
 /**
@@ -15,14 +15,20 @@ const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' 
 const KEN = 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
 
 /**
- * Demo the Get Equipement availability
+ * Demo the Get Elevator Door Button Events
  */
-const demoGetEquipmentAvailability = async (accessToken: string, equipmentId: string) => {
-  // Fetch availability information of equipment
-  console.log(`Fetch availability information of the equipment ${equipmentId}`)
-  const availability = await fetchEquipmentAvailability(accessToken, [equipmentId])
-  console.log(JSON.stringify(availability, undefined, 2))
+const demoGetDoorButtonEvent = async (accessToken: string, equipmentId: string) => {
 
+  // Fetch door event information of equipment
+  console.log(`Fetch door information of the equipment ${equipmentId}`)
+  const door = await fetchDoorEvent(accessToken, [equipmentId])
+  console.log(JSON.stringify(door, undefined, 2))
+
+   // Fetch button event information of equipment
+   console.log(`Fetch button information of the equipment ${equipmentId}`)
+   const button = await fetchButtonEvent(accessToken, [equipmentId])
+   console.log(JSON.stringify(button, undefined, 2))
+ 
 }
 
 
@@ -37,7 +43,7 @@ const start = async () => {
   const accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
 
-  await demoGetEquipmentAvailability(accessToken, KEN)
+  await demoGetDoorButtonEvent(accessToken, KEN)
 }
 
 start()

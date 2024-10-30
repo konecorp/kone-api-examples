@@ -7,7 +7,7 @@ import {
   fetchAccessToken,
   openWebSocketConnection,
   validateClientIdAndClientSecret,
-} from '../common/koneapi'
+} from '../../common/koneapi'
 
 /**
  * Update these two variables with your own credentials or set them up as environment variables.
@@ -28,25 +28,36 @@ const onWebSocketMessage = (data: string): void => {
 
   console.log('Incoming WebSocket message', dataBlob)
   if (dataBlob.data.session_id) {
-    console.log('Making delete call request')
-    makeDeleteCallRequest(dataBlob.data.session_id)
+    console.log(`Making monitoring request ${dataBlob.data.session_id}`)
+    activateMonitoring(dataBlob.data.session_id)
   }
   console.log('timing ' + new Date())
 }
 
-function makeDeleteCallRequest(sessionId: any) {
-  const deleteCallPayload: any = {
-    type: 'lift-call-api-v2',
+function activateMonitoring(session_id: number) {
+  // Build the call payload using the areas previously generated
+  const monitoringCallPayload: any = {
+    type: 'site-monitoring',
+    requestId: uuidv4(),
     buildingId: targetBuildingId,
-    callType: 'delete',
+    callType: 'monitor',
+    // callType: 'config',
     groupId: '1',
     payload: {
-      session_id: sessionId,
+      sub: 'KCESmartLiftClient2',
+      duration: 300,
+      subtopics: [
+        `call_state/${session_id}/being_allocated`,
+        `call_state/${session_id}/being_served`,
+        `call_state/${session_id}/served_soon`,
+        `call_state/${session_id}/served`
+      ],
     },
   }
-  console.log('delete request payload')
-  console.log(JSON.stringify(deleteCallPayload))
-  webSocketConnection.send(JSON.stringify(deleteCallPayload))
+
+  console.log('monitoring request payload')
+  console.log(JSON.stringify(monitoringCallPayload))
+  webSocketConnection.send(JSON.stringify(monitoringCallPayload))
 }
 /**
  * Main function that starts the script execution
@@ -73,7 +84,6 @@ const start = async () => {
   // Add handler for incoming messages
   webSocketConnection.on('message', (data: any) => onWebSocketMessage(data))
 
-  // Build the call payload using the areas previously generated
   const destinationCallPayload: any = {
     type: 'lift-call-api-v2',
     buildingId: targetBuildingId,

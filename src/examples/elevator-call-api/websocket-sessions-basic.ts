@@ -2,9 +2,9 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
-import { ResumeSessionPayload, CreateSessionPayload } from '../common/types'
+import { ResumeSessionPayload, CreateSessionPayload } from '../../common/types'
 
-import { validateClientIdAndClientSecret, fetchAccessToken, openWebSocketConnection } from '../common/koneapi'
+import { validateClientIdAndClientSecret, fetchAccessToken, openWebSocketConnection } from '../../common/koneapi'
 
 /**
  * Update these two variables with your own credentials or set them up as environment variables.

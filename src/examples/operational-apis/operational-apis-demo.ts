@@ -1,5 +1,5 @@
-import { fetchAccessToken, fetchResources, validateClientIdAndClientSecret } from '../common/koneapi'
-import { fetchEquipmentBasicInformation, fetchEquipmentStatus, fetchServiceOrdersList, fetchSingleServiceOrder } from '../common/operational-api-supporting-functions'
+import { fetchAccessToken, fetchResources, validateClientIdAndClientSecret } from '../../common/koneapi'
+import { fetchEquipmentBasicInformation, fetchEquipmentStatus, fetchServiceOrdersList, fetchSingleServiceOrder } from '../../common/operational-api-supporting-functions'
 
 /**
  * Update these two variables with your own credentials or set them up as environment variables.
