@@ -23,7 +23,6 @@ const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
 const API_AUTH_TOKEN_ENDPOINT_V2 = process.env.API_AUTH_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v2/oauth2/token`
 const API_AUTH_LIMITED_TOKEN_ENDPOINT = process.env.API_AUTH_LIMITED_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v1/oauth2/limited-token`
 const API_RESOURCES_ENDPOINT = process.env.API_RESOURCES_ENDPOINT || `https://${API_HOSTNAME}/api/v1/application/self/resources`
-const API_TOPOLOGY_ENDPOINT = process.env.API_TOPOLOGY_ENDPOINT || `https://${API_HOSTNAME}/api/v1/buildings`
 const WEBSOCKET_ENDPOINT = process.env.WEBSOCKET_ENDPOINT || `wss://${API_HOSTNAME}/stream-v2`
 
 const WEBSOCKET_SUBPROTOCOL = process.env.WEBSOCKET_SUBPROTOCOL || 'koneapi'
