@@ -73,23 +73,6 @@ export type CallCancelReason =
   | 'access_denied'
   | 'unknown'
 
-/**
- * A physical building.
- */
-export type BuildingTopology = {
-  /**
-   * Identifier of the building.
-   */
-  buildingId: BuildingId
-  /**
-   * Lift groups in the building.
-   */
-  groups: Group[]
-  /**
-   * Areas in the building.
-   */
-  areas: Area[]
-}
 
 /**
  * Logical lift group. Lift groups are the groups of lifts working in unison.
