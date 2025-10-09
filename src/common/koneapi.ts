@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 
 import {
-  BuildingTopology,
   WebSocketSession,
   WebSocketResponse,
   WebSocketCreateSessionResponse,
@@ -148,36 +147,6 @@ export const fetchResources = async (accessToken: AccessToken, resourceType: str
   if (_.isEmpty(resources)) throw new Error('No resources found')
 
   return resources
-}
-
-/**
- * Function is used to fetch the topology of the given building.
- * It is good practice to fetch the topology once and then cache it for further use.
- *
- * @param {string} accessToken
- * @param {string} buildingId
- */
-export async function fetchBuildingTopology(accessToken: AccessToken, buildingId: string): Promise<BuildingTopology> {
-  const requestConfig: AxiosRequestConfig = {
-    method: 'GET',
-    url: `${API_TOPOLOGY_ENDPOINT}/${buildingId}`,
-    headers: {
-      Authorization: accessToken,
-    },
-  }
-
-  // Execute the request
-  try {
-    const result = await axios(requestConfig)
-
-    // Assert data to be our wanted building topology information
-    const buildingTopology = result.data as BuildingTopology
-
-    return buildingTopology
-  } catch (err) {
-    console.log(err)
-    throw err
-  }
 }
 
 /**

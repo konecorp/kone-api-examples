@@ -13,7 +13,6 @@
     "start:actions-demo": "ts-node src/examples/actions-demo.ts",
     "start:call-and-monitoring-demo": "ts-node src/examples/call-and-monitoring-demo.ts",
     "start:websocket-sessions-basic": "ts-node src/examples/websocket-sessions-basic.ts",
-    "start:websocket-sessions-advanced": "ts-node src/examples/websocket-sessions-advanced.ts",
     "start:operational-apis-demo": "ts-node src/examples/operational-apis-demo.ts",
     "start:get-equipment-availability-demo": "ts-node src/examples/get-equipment-availability-demo.ts",
     "start:get-equipment-status-demo": "ts-node src/examples/get-equipment-status.ts",
