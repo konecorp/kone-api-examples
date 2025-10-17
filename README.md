@@ -15,7 +15,7 @@ The example codes on this document will introduce the main concepts of KONE APIs
     - With **Get equipment availability** you can fetch information about the last known availability status of KONE and NON-KONE equipment and
     - With **Get equipment status** you can retrieve information of equipment's current status
     - With **Get elevator movement event** you can fetch movement information of KONE and NON-KONE equipment
-    - With **Elevator-door-button-events** you can retrieve information related to the status of an elevator door also status of an elevator landing call station button for elevator upward or downward journey requests 
+    - With **Elevator-door-button-events** you can retrieve information related to the status of an elevator door also status of an elevator landing call station button for elevator upward or downward journey requests
     - With **Escalator-event** you can retrieve information related to escalator speed and direction which direction the escalator is moving. It also displays previous direction, previous speed and braking distance also, It returns last saved events.
   - **Service Info API v2**:
     - With **Service orders** you can fetch information about the equipment’s entire maintenance history which includes recent as well as past data like activity types, dates, service order related fields
@@ -33,7 +33,6 @@ The example codes on this document will introduce the main concepts of KONE APIs
 | Site Monitoring API            | [monitoring-siteapi-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-api/monitoring-siteapi-demo.ts)            | Simple demo to fetch the real time information about the lift status, call state, deck position, door state etc. [Technical documentation in the portal](https://dev.kone.com/api-portal/dashboard/api-documentation/elevator-websocket-api-v2) |
 | Call and Monitoring API        | [call-and-monitoring-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-api/call-and-monitoring-demo.ts)            | Simple demo to make an elevator call and monitor the next events related to changed states for the previously called elevator. |
 | WebSocket sessions - Basic     | [websocket-sessions-basic.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-api/websocket-sessions-basic.ts)      | Introduction to the WebSocket sessions within the Elevator WebSocket API.                                            |
-| WebSocket sessions - Advanced  | [websocket-sessions-advanced.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-api/websocket-sessions-advanced.ts) | Advanced demo about the WebSocket session handling. Includes proper error handling and interaction with the API in cases like timeouts.                                         |
 | Operational APIs               | [operational-apis-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/operational-apis/operational-apis-demo.ts)             | Simple demo about acquiring needed access token, fetching basic information of an equipment and its maintenance status, get list of all service orders, and detailed information of a service order.                                          |
 | Get equipment availability     | [get-equipment-availability-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/operational-apis/equipment-status-api/get-equipment-availability-demo.ts) | Simple demo about acquiring needed access token, fetching information of equipment about availability.                |
 | Get equipment status           | [get-equipment-status-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/operational-apis/equipment-status-api/get-equipment-status.ts)         | Simple demo about acquiring needed access token, fetching information of equipment about status.                      |
@@ -48,8 +47,8 @@ To use our APIs, you need an account on [KONE API Portal](https://dev.kone.com/)
 
 Since the project is a Typescript project, setting it up requires just a little effort. You can find all the necessary code in the [elevator-call-2-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-2-demo.ts). Once the file is run, the following is done:
 
-1. Creating a new `.env` file in a root directory or renaming existing `.env.example` file to `.env` and then editing the same with the variable details mentioned in Step 2.  
-2. Checking that the necessary variables have been defined: `CLIENT_ID`, `CLIENT_SECRET` and `BUILDING_ID` in `.env` file.
+1. Creating a new `.env` file in a root directory or renaming existing `.env.example` file to `.env` and then editing the same with the variable details mentioned in Step 2.
+2. Checking that the necessary variables have been defined: `CLIENT_ID`, `CLIENT_SECRET`, `BUILDING_ID` and `KEN` in `.env` file.
 3. Fetching an access token from Authentication API v2 with a scope to request access to the building and group in the body of the request `callgiving/group:BUILDING_ID:GROUP_ID` and `inventory/application`. The successful response will return a token with a scope that includes `inventory/application` grant and also allows API authentication for the following steps.
 4. For destination call, setting sourceId (`payload.area`) and destinationId (`payload.call.destination`) based on the previously retrieved building information. These values represent from which area between which the user would like to move using the elevator.
 5. For landing call, setting sourceId (`payload.area`) and direction based on the previously retrieved building information. These values order the elevator to move to a specific floor.
@@ -80,6 +79,7 @@ Follow the instructions to start using this project
    - **CLIENT_ID**, the clientId generated when creating the application in KONE API Portal
    - **CLIENT_SECRET**, the client secret received when creating the application
    - **BUILDING_ID**, the building Id for which you want to perform API calls
+   - **KEN**, The KONE Equipment Number (KEN), e.g. ken:38999833, required for Operational APIs.
 
 ![Alt text](./img/variables4.jpg?raw=true 'Environment variables')
 

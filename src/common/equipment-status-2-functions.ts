@@ -28,7 +28,12 @@ async function executeRequest(
     const result = await axios(requestConfig)
     return result.data
   } catch (error: any) {
-    console.error(errorMessage, error?.message)
+    if (axios.isAxiosError(error)) {
+      const apiMessage = error.response?.data?.message || error.message
+      console.error(`${errorMessage}: ${apiMessage}`)
+    } else {
+      console.error(`${errorMessage}: ${error.message}`)
+    }
   }
 }
 
