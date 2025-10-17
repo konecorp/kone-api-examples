@@ -443,23 +443,6 @@ export interface EquipmentStatus {
 }
 
 /**
- * Service order of equipment
- */
-export interface ServiceOrder {
-  serviceOrderId: string
-  activityType?: string
-  status?: string
-  description?: string
-  createdDateTime?: string
-  actualArrivalDateTime?: string
-  finishedDateTime?: string
-  invoices?: {
-    costAmount?: number
-    costCurrency?: string
-  }
-}
-
-/**
  * Equipment Status API 2.0
  * Availability information of equipment
  * Refer to API portal documentation for more details of availability data format
@@ -513,7 +496,7 @@ export interface Status {
   equipmentFunctionalLocation: string
   equipmentFunctionalLocationDescription: string
   maintenance: {
-    status: string 
+    status: string
   }
   // equipmentInfo?: Omit<EquipmentInfo, 'equipmentId' | 'type'>
   // lastUpdate?: string

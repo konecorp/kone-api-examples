@@ -12,7 +12,7 @@ import { fetchDoorEvent, fetchButtonEvent } from '../../../common/equipment-stat
 const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf48ab0-a902-4b52-8c53-1a9aede716e5'
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
 
-const KEN = 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
+const KEN = process.env.KEN || 'YOUR_EQUIPMENT_WITH_KEN_PREFIX' // eg. ken:123456789
 
 /**
  * Demo the Get Elevator Door Button Events
@@ -28,7 +28,7 @@ const demoGetDoorButtonEvent = async (accessToken: string, equipmentId: string) 
    console.log(`Fetch button information of the equipment ${equipmentId}`)
    const button = await fetchButtonEvent(accessToken, [equipmentId])
    console.log(JSON.stringify(button, undefined, 2))
- 
+
 }
 
 

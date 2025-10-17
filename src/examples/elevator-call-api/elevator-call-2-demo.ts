@@ -14,7 +14,7 @@ import {
  */
 const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf48ab0-a902-4b52-8c53-1a9aede716e5'
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
-const BUILDING_ID: string = 'Qt8lIGiut3t'
+const BUILDING_ID: string = process.env.BUILDING_ID || ''
 
 /**
  * Function is used to log out incoming WebSocket messages

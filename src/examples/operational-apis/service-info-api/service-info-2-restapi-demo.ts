@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
-import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
 import { fetchAccessToken, fetchResources, validateClientIdAndClientSecret } from '../../../common/koneapi'
 import { fetchServiceOrdersList, fetchSingleServiceOrder } from '../../../common/service-info-2-functions'
@@ -10,6 +9,7 @@ import { fetchServiceOrdersList, fetchSingleServiceOrder } from '../../../common
  */
 const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf48ab0-a902-4b52-8c53-1a9aede716e5'
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
+const KEN: string = process.env.KEN || 'ken:38999833'
 
 /**
  * Demo the Service Info API by fetching list of service orders and detail of a order for the equipment
@@ -19,7 +19,7 @@ const demoServiceInfoApi = async (accessToken: string, targetEquipmentId: string
   const scopes = [`serviceinfo/${targetEquipmentId}`]
   accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, scopes)
   console.log(`AccessToken with scope ${scopes} successfully fetched`)
- 
+
   // Fetch list of all service orders
   let serviceOrdersList
   console.log(`Fetch list of service orders for the equipment ${targetEquipmentId}`)
@@ -46,14 +46,14 @@ const start = async () => {
   // Fetch the first token which will by default contain application/inventory scope for our use in the next request
   let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET)
   console.log('AccessToken successfully fetched')
-  
-  // Fetch equipments to which the user has access to 
+
+  // Fetch equipments to which the user has access to
   const equipments = await fetchResources(accessToken, 'ken')
   console.log('List of accessible equipments:', equipments)
-  
-  const targetEquipmentId = equipments[0]
+
+  const targetEquipmentId = `${KEN}`
   await demoServiceInfoApi(accessToken, targetEquipmentId)
-  
+
 }
 
 start()

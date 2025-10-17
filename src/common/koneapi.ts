@@ -3,6 +3,8 @@ import querystring from 'querystring'
 import WebSocket from 'ws'
 import { v4 as uuidv4 } from 'uuid'
 import _ from 'lodash'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 import {
   WebSocketSession,
@@ -20,8 +22,8 @@ import {
  */
 const API_HOSTNAME = process.env.API_HOSTNAME || 'dev.kone.com'
 const API_AUTH_TOKEN_ENDPOINT_V2 = process.env.API_AUTH_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v2/oauth2/token`
-const API_AUTH_LIMITED_TOKEN_ENDPOINT = process.env.API_AUTH_LIMITED_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v1/oauth2/limited-token`
-const API_RESOURCES_ENDPOINT = process.env.API_RESOURCES_ENDPOINT || `https://${API_HOSTNAME}/api/v1/application/self/resources`
+const API_AUTH_LIMITED_TOKEN_ENDPOINT = process.env.API_AUTH_LIMITED_TOKEN_ENDPOINT || `https://${API_HOSTNAME}/api/v2/oauth2/limited-token`
+const API_RESOURCES_ENDPOINT = process.env.API_RESOURCES_ENDPOINT || `https://${API_HOSTNAME}/api/v2/application/self/resources`
 const WEBSOCKET_ENDPOINT = process.env.WEBSOCKET_ENDPOINT || `wss://${API_HOSTNAME}/stream-v2`
 
 const WEBSOCKET_SUBPROTOCOL = process.env.WEBSOCKET_SUBPROTOCOL || 'koneapi'
@@ -117,6 +119,18 @@ export async function fetchLimitedAccessToken(
   return limitedToken
 }
 
+function getResources(resourceType: any, result: any): string[] {
+  if (resourceType === 'ken') {
+    const buildingKens = result.data.buildings?.flatMap((b: any) => b.apiKens ?? []);
+    const equipmentKens = result.data.equipments?.map((e: any) => e.id) ?? [];
+    return [...(buildingKens ?? []), ...equipmentKens];
+  } else if (resourceType === 'building') {
+    return result.data.buildings?.map((b: any) => b.id) ?? [];
+  }
+  return [];
+}
+
+
 /**
  * returns and array of resource identifiers to which the user has access to
  * In order to successfully make this call, it is needed a token which in scope has
@@ -141,7 +155,8 @@ export const fetchResources = async (accessToken: AccessToken, resourceType: str
   console.log(`Resources: ${result.data}`)
 
   // Assert data to be our wanted list of buildings
-  const resources = (result.data as string[]).filter((resource) => resource.startsWith(`${resourceType}:`))
+  const resources = getResources(resourceType, result);
+
 
   // If no buildings are accessible the throw an error
   if (_.isEmpty(resources)) throw new Error('No resources found')

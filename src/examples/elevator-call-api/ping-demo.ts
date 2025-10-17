@@ -35,7 +35,7 @@ const start = async () => {
 
   // Fetch the access token with both application/inventory scope and access to execute elevator calls on any building
   // accessible to the application - note that if you have many (100+) resources, you cannot use wildcards
-  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, ['application/inventory', 'callgiving/*'])
+  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, ['application/inventory', `callgiving/group:${BUILDING_ID}:1`])
   console.log('AccessToken successfully fetched')
 
   // Select the first available building
