@@ -14,7 +14,8 @@ import {
  */
 const CLIENT_ID: string = process.env.CLIENT_ID || 'YOUR_CLIENT_ID' // eg. 'dcf48ab0-a902-4b52-8c53-1a9aede716e5'
 const CLIENT_SECRET: string = process.env.CLIENT_SECRET || 'YOUR_CLIENT_SECRET' // eg. '31d1329f8344fc12b1a960c8b8e0fc6a22ea7c35774c807a4fcabec4ffc8ae5b'
-const BUILDING_ID: string = process.env.BUILDING_ID || ''
+const BUILDING_ID: string = process.env.BUILDING_ID || 'YOUR_BUILDING_ID'
+const GROUP_ID: string = process.env.GROUP_ID || 'YOUR_GROUP_ID'
 /**
  * Function is used to log out incoming WebSocket messages
  *
@@ -35,7 +36,7 @@ const start = async () => {
 
   // Fetch the access token with both application/inventory scope and access to execute elevator calls on any building
   // accessible to the application - note that if you have many (100+) resources, you cannot use wildcards
-  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, ['application/inventory', `callgiving/group:${BUILDING_ID}:1`])
+  let accessToken = await fetchAccessToken(CLIENT_ID, CLIENT_SECRET, ['application/inventory', `callgiving/group:${BUILDING_ID}:${GROUP_ID}`])
   console.log('AccessToken successfully fetched')
 
   // Select the first available building
@@ -58,7 +59,7 @@ const start = async () => {
     payload: {
       request_id: getRequestId(),
     },
-    groupId: '1',
+    groupId: GROUP_ID,
   }
 
   console.log(destinationCallPayload)
