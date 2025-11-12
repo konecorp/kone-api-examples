@@ -48,7 +48,7 @@ To use our APIs, you need an account on [KONE API Portal](https://dev.kone.com/)
 Since the project is a Typescript project, setting it up requires just a little effort. You can find all the necessary code in the [elevator-call-2-demo.ts](https://github.com/konecorp/kone-api-examples/blob/main/src/examples/elevator-call-2-demo.ts). Once the file is run, the following is done:
 
 1. Creating a new `.env` file in a root directory or renaming existing `.env.example` file to `.env` and then editing the same with the variable details mentioned in Step 2.
-2. Checking that the necessary variables have been defined: `CLIENT_ID`, `CLIENT_SECRET`, `BUILDING_ID` and `KEN` in `.env` file.
+2. Checking that the necessary variables have been defined: `CLIENT_ID`, `CLIENT_SECRET`, `BUILDING_ID`, `KEN` and `GROUP_ID` in `.env` file.
 3. Fetching an access token from Authentication API v2 with a scope to request access to the building and group in the body of the request `callgiving/group:BUILDING_ID:GROUP_ID` and `inventory/application`. The successful response will return a token with a scope that includes `inventory/application` grant and also allows API authentication for the following steps.
 4. For destination call, setting sourceId (`payload.area`) and destinationId (`payload.call.destination`) based on the previously retrieved building information. These values represent from which area between which the user would like to move using the elevator.
 5. For landing call, setting sourceId (`payload.area`) and direction based on the previously retrieved building information. These values order the elevator to move to a specific floor.
