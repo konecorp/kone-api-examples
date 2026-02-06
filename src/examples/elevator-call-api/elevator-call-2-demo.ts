@@ -54,28 +54,57 @@ const start = async () => {
   // Add handler for incoming messages
   webSocketConnection.on('message', (data: any) => onWebSocketMessage(data))
 
-  // Build the call payload using the areas previously generated
-  const destinationCallPayload: any = {
-    type: 'lift-call-api-v2',
-    buildingId: targetBuildingId,
-    callType: 'action',
-    groupId: GROUP_ID,
-    payload: {
-      request_id: getRequestId(),
-      area: 5000,
-      time: new Date().toISOString(),
-      terminal: 2,
-      // terminal: 10011,
-      call: {
-        action: 3,
-        destination: 3000,
-      },
-    },
-  }
+  // Call elevator from wherever
+  const landingCallPayload: any = {
+      type: "lift-call-api-v2",
+      buildingId: targetBuildingId,
+      callType: "action",
+      groupId: GROUP_ID,
+      payload: {
+        request_id: getRequestId(),
+        area: 3000, //source floor area id
+        time: new Date(),
+        terminal: 1,
+        call: {
+            action: 2002,
+          }
+        }
+    }
 
-  console.log(destinationCallPayload)
+  console.log("CALL LIFT TO SOURCE FLOOR", landingCallPayload) 
+
   // execute the call within the open WebSocket connection
-  webSocketConnection.send(JSON.stringify(destinationCallPayload))
+  webSocketConnection.send(JSON.stringify(landingCallPayload))
+
+  setTimeout(() => {
+
+      // Build the call payload using the areas previously generated
+      const destinationCallPayload: any = {
+        type: 'lift-call-api-v2',
+        buildingId: targetBuildingId,
+        callType: 'action',
+        groupId: GROUP_ID,
+        payload: {
+          request_id: getRequestId(),
+          area: 3000,
+          time: new Date().toISOString(),
+          terminal: 1,
+          // terminal: 10011,
+          call: {
+            action: 2,
+            destination: 5000,
+          },
+        },
+      }
+    
+      console.log("REQUEST LIFT TO DESTINATION FLOOR", destinationCallPayload)
+      // execute the call within the open WebSocket connection
+      webSocketConnection.send(JSON.stringify(destinationCallPayload))
+    
+  }, 2000)
+
+
+
 }
 
 function getRequestId() {

@@ -1,0 +1,235 @@
+{
+    "buildings": [
+        {
+            "id": "4TFxWRCv23D",
+            "name": "39999001",
+            "desc": "Virtual Building for V1",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "groups": [
+                {
+                    "id": "4TFxWRCv23D:1",
+                    "name": "39999001",
+                    "desc": "Virtual Building for V2",
+                    "products": [
+                        "callgiving",
+                        "robotcall"
+                    ]
+                }
+            ],
+            "apiKens": [
+                "39999001"
+            ]
+        },
+        {
+            "id": "fWlfHyPlaca",
+            "name": "39999000",
+            "desc": "Virtual Building for V1",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "groups": [
+                {
+                    "id": "fWlfHyPlaca:1",
+                    "name": "39999000",
+                    "desc": "Virtual Building for V2",
+                    "products": [
+                        "callgiving",
+                        "robotcall"
+                    ]
+                }
+            ],
+            "apiKens": [
+                "39999000"
+            ]
+        },
+        {
+            "id": "HxKjGc3knnh",
+            "name": "39999012",
+            "desc": "Virtual Building for V1",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "groups": [
+                {
+                    "id": "HxKjGc3knnh:1",
+                    "name": "39999012",
+                    "desc": "Virtual Building for V2",
+                    "products": [
+                        "callgiving",
+                        "robotcall"
+                    ]
+                }
+            ],
+            "apiKens": [
+                "39999012"
+            ]
+        },
+        {
+            "id": "jSqCXuwqmjw",
+            "name": "DEVICE USED FOR PRUDUCTUIN TESTING ONLY",
+            "desc": "DEVICE USED FOR PRUDUCTUIN TESTING ONLY,",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "groups": [
+                {
+                    "id": "jSqCXuwqmjw:1",
+                    "name": "39999014",
+                    "desc": "Virtual Building for V2",
+                    "products": [
+                        "callgiving",
+                        "robotcall"
+                    ]
+                }
+            ],
+            "apiKens": [
+                "39999014"
+            ]
+        },
+        {
+            "id": "L1QinntdEOg",
+            "name": "39999013",
+            "desc": "Virtual Building for V2",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "groups": [
+                {
+                    "id": "L1QinntdEOg:1",
+                    "name": "39999013",
+                    "desc": "Virtual Building for V2",
+                    "products": [
+                        "callgiving",
+                        "robotcall"
+                    ]
+                }
+            ],
+            "apiKens": [
+                "39999013"
+            ]
+        }
+    ],
+    "equipments": [
+        {
+            "id": "111111111",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "serviceinfo",
+                "rtm"
+            ]
+        },
+        {
+            "id": "211111112",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "serviceinfo",
+                "rtm"
+            ]
+        },
+        {
+            "id": "311111113",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "serviceinfo",
+                "rtm"
+            ]
+        },
+        {
+            "id": "411111114",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "serviceinfo",
+                "rtm"
+            ]
+        },
+        {
+            "id": "511111115",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "serviceinfo",
+                "rtm"
+            ]
+        },
+        {
+            "id": "33333333",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "rtm"
+            ]
+        },
+        {
+            "id": "23333332",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "rtm"
+            ]
+        },
+        {
+            "id": "13333331",
+            "name": " ",
+            "desc": " ",
+            "city": "",
+            "country": "",
+            "zipCode": "",
+            "addressLine1": "",
+            "addressLine2": "",
+            "products": [
+                "rtm"
+            ]
+        }
+    ]
+}

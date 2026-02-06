@@ -65,7 +65,7 @@ export async function fetchAccessToken(
 
     // get the accessToken from the response
     const accessToken = requestResult.data.access_token
-
+    
     return accessToken
   } catch (authError) {
     let errorMsg = 'Error fetching the access token'
@@ -202,7 +202,7 @@ export async function openWebSocketConnection(accessToken: AccessToken): Promise
     })
 
     ws.on('open', async (_event: any) => {
-      console.log('web socket ocnnection opened ')
+      console.log('web socket connection opened ')
       console.log(ws.url.split('?'))
       // Once the connection is open, resolve promise with the WebSocket instance
       ws.removeAllListeners('close')
